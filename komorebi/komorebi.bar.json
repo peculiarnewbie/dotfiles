@@ -1,0 +1,77 @@
+{
+    "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.33/schema.bar.json",
+    "monitor": {
+        "index": 1,
+        "work_area_offset": {
+            "left": 0,
+            "top": 50,
+            "right": 0,
+            "bottom": 50
+        }
+    },
+    "font_family": "JetBrains Mono",
+    "theme": {
+        "palette": "Catppuccin",
+        "name": "Mocha",
+        "accent": "Sky"
+    },
+    "left_widgets": [
+        {
+            "Time": {
+                "enable": true,
+                "format": "TwentyFourHour"
+            }
+        },
+        {
+            "Date": {
+                "enable": true,
+                "format": "YearMonthDate"
+            }
+        },
+        {
+            "Media": {
+                "enable": true
+            }
+        }
+    ],
+    "center_widgets": [
+        {
+            "Komorebi": {
+                "focused_window": {
+                    "enable": true,
+                    "show_icon": true
+                }
+            }
+        }
+    ],
+    "right_widgets": [
+        {
+            "Update": {
+                "enable": true
+            }
+        },
+        {
+            "Cpu": {
+                "enable": true
+            }
+        },
+        {
+            "Memory": {
+                "enable": true
+            }
+        },
+        {
+            "Network": {
+                "enable": true,
+                "show_network_activity": true,
+                "show_total_data_transmitted": false,
+                "show_default_interface": false
+            }
+        },
+        {
+            "Battery": {
+                "enable": true
+            }
+        }
+    ]
+}
