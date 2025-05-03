@@ -1,0 +1,22 @@
+modmap:
+  - name: "Caps to Ctrl/Esc"
+    remap:
+      KEY_CAPSLOCK:
+        held: Control_L
+        alone: KEY_ESC
+      Control_R:
+        held: [Control_L, Alt_L, Super_L]
+        alone: Control_R
+      F23:
+        held: [Control_L, Alt_L, Super_L]
+        alone: Control_R
+      KEY_ESC:
+        held: [Control_L, Alt_L, Shift_L]
+        alone: KEY_ESC
+  - name: "Tab to Ctrl+Alt+Super/Tab"
+    application:
+      not: com.moonlight_stream.Moonlight
+    remap:
+      KEY_TAB:
+        held: [Control_L, Alt_L, Super_L]
+        alone: KEY_TAB
