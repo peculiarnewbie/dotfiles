@@ -1,0 +1,123 @@
+{
+    "workbench.colorTheme": "Vitesse Black",
+    "editor.scrollbar.vertical": "hidden",
+    "editor.scrollbar.verticalScrollbarSize": 0,
+    "security.workspace.trust.untrustedFiles": "newWindow",
+    "security.workspace.trust.startupPrompt": "never",
+    "security.workspace.trust.enabled": false,
+    "editor.fontFamily": "CommitMono",
+    "extensions.autoUpdate": false,
+    "terminal.external.linuxExec": "kitty",
+    "terminal.explorerKind": "both",
+    "terminal.sourceControlRepositoriesKind": "both",
+    "telemetry.telemetryLevel": "off",
+    "workbench.iconTheme": "vscode-icons",
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.formatOnSave": true,
+    "prettier.tabWidth": 4,
+    "workbench.sideBar.location": "right",
+    "editor.minimap.autohide": true,
+    "svelte.enable-ts-plugin": true,
+    "workbench.editor.labelFormat": "short",
+    "vim.easymotion": true,
+    "editor.cursorSurroundingLines": 12,
+    "terminal.integrated.altClickMovesCursor": false,
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "vim.leader": "space",
+    "vim.normalModeKeyBindings": [
+        {
+            "before": ["<leader>", "e"],
+            "commands": ["workbench.view.explorer"]
+        },
+        {
+            "before": ["<leader>", "x"],
+            "commands": ["workbench.action.closeActiveEditor"]
+        }
+    ],
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.formatOnPaste": true,
+    "editor.formatOnType": true,
+    "[css]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[mdx]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "extensions.experimental.affinity": {
+        "vscodevim.vim": 1
+    },
+    "git.openRepositoryInParentFolders": "always",
+    "[astro]": {
+        "editor.defaultFormatter": "astro-build.astro-vscode"
+    },
+    "todohighlight.include": [
+        "**/*.js",
+        "**/*.jsx",
+        "**/*.ts",
+        "**/*.tsx",
+        "**/*.html",
+        "**/*.php",
+        "**/*.css",
+        "**/*.scss",
+        "**/*.astro"
+    ],
+    "godotTools.editorPath.godot4": "godot-mono",
+    "[cpp]": {
+        "editor.wordBasedSuggestions": "off",
+        "editor.suggest.insertMode": "replace",
+        "editor.semanticHighlighting.enabled": true
+    },
+    "C_Cpp.intelliSenseEngineFallback": "enabled",
+    "editor.quickSuggestions": {
+        "strings": "on"
+    },
+    "editor.largeFileOptimizations": false,
+    "[gleam]": {
+        "editor.indentSize": "tabSize",
+        "vim.textwidth": 120,
+        "prettier.useTabs": true,
+        "editor.detectIndentation": false
+    },
+    "workbench.editor.showTabs": "none",
+    "workbench.navigationControl.enabled": false,
+    "workbench.editor.editorActionsLocation": "hidden",
+    "workbench.layoutControl.enabled": false,
+    "chat.commandCenter.enabled": false,
+    "workbench.activityBar.location": "bottom",
+    "window.menuBarVisibility": "toggle",
+    "cmake.showOptionsMovedNotification": false,
+    "typescript.preferences.autoImportFileExcludePatterns": ["^(node:)?os$"],
+    "window.customTitleBarVisibility": "auto",
+    "vim.foldfix": true,
+    "go.toolsManagement.autoUpdate": true,
+    "workbench.startupEditor": "none",
+    "zenMode.showTabs": "none",
+    "[markdown]": {
+        "editor.defaultFormatter": null,
+        "editor.unicodeHighlight.ambiguousCharacters": false,
+        "editor.unicodeHighlight.invisibleCharacters": false,
+        "diffEditor.ignoreTrimWhitespace": false,
+        "editor.wordWrap": "on",
+        "editor.quickSuggestions": {
+            "comments": "off",
+            "strings": "off",
+            "other": "off"
+        }
+    },
+    "workbench.colorCustomizations": {
+        "editor.selectionBackground": "#ffffff60",
+        "editor.selectionHighlightBackground": "#ffffff30"
+    }
+}
