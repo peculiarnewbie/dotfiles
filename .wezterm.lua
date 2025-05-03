@@ -9,17 +9,26 @@ local act = wezterm.action
 -- This is where you actually apply your config choices
 
 -- For example, changing the color scheme:
-config.color_scheme = "Catppuccin Mocha"
+config.color_scheme = "carbonfox"
 
 -- Spawn a powershell in login mode
 config.default_prog = { "C:/Program Files/PowerShell/7/pwsh.exe", "-l" }
 
 config.front_end = "WebGpu"
 config.max_fps = 144
-config.font_size = 11.0
+config.font_size = 10.0
 config.use_fancy_tab_bar = false
 config.window_decorations = "RESIZE"
 config.webgpu_power_preference = "HighPerformance"
+
+config.enable_scroll_bar = true
+
+config.window_padding = {
+	left = 0,
+	right = 0,
+	top = 0,
+	bottom = 0,
+}
 
 config.keys = {
 	{
