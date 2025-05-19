@@ -3,7 +3,6 @@
 
 $*CapsLock::
 {
-    start := A_TickCount
     if (KeyWait("CapsLock", "T0.1")) {
         Send("{Esc}")
     } else {
@@ -14,17 +13,33 @@ $*CapsLock::
     return
 }
 
-; delay tab hold action
-
 $*Tab::
 {
-    start := A_TickCount
     if (KeyWait("Tab", "T0.1")) {
         Send("{Tab}")
     } else {
-        Send("{Ctrl down}{LWin down}{Alt down}")
-        KeyWait("Tab")
-        Send("{Ctrl up}{LWin up}{Alt up}")
     }
     return
 }
+
+~Tab & h::Send("{Left}")
+~Tab & j::Send("{Down}")
+~Tab & k::Send("{Up}")
+~Tab & l::Send("{Right}")
+
+SendWinShift(key) {
+    Send("{LWin down}{Shift down}" key "{Shift up}{LWin up}")
+}
+
+~Tab & a:: SendWinShift("a")
+~Tab & s:: SendWinShift("s")
+~Tab & o:: SendWinShift("o")
+~Tab & t:: SendWinShift("t")
+~Tab & c:: SendWinShift("c")
+~Tab & d:: SendWinShift("d")
+~Tab & e:: SendWinShift("e")
+~Tab & 0:: SendWinShift("0")
+
+~Tab & f:: SendWinShift("f")
+~Tab & q:: SendWinShift("q")
+~Tab & w:: SendWinShift("w")
