@@ -1,0 +1,87 @@
+.shell powershell
+
+# Reload whkd configuration
+# alt + o                 : taskkill /f /im whkd.exe && start /b whkd # if shell is cmd
+win + o                 : taskkill /f /im whkd.exe; Start-Process whkd -WindowStyle hidden # if shell is pwsh / powershell
+win + alt + o         : komorebic reload-configuration
+
+# App shortcuts - these require shell to be pwsh / powershell
+# The apps will be focused if open, or launched if not open
+# alt + f                 : if ($wshell.AppActivate('Firefox') -eq $False) { start firefox }
+# alt + b                 : if ($wshell.AppActivate('Chrome') -eq $False) { start chrome }
+#
+# Focus windows
+win + h                 : komorebic focus left
+win + j                 : komorebic focus down
+win + k                 : komorebic focus up
+win + l                 : komorebic focus right
+
+# arrows
+
+# Move windows
+alt + win + h         : komorebic move left
+alt + win + j         : komorebic move down
+alt + win + k         : komorebic move up
+alt + win + l         : komorebic move right
+
+# Stack windows
+win + alt + oem_4              : komorebic stack left
+win + alt + oem_6              : komorebic stack down
+alt + up                : komorebic stack up
+alt + right             : komorebic stack right
+win + oem_7             : komorebic unstack ## oem_1 is ; oem_7 is '
+win + oem_4             : komorebic cycle-stack previous # oem_4 is [
+win + oem_6             : komorebic cycle-stack next # oem_6 is ]
+win + oem_5             : komorebic stack-all # oem_5 is \
+alt + oem_4             : komorebic cycle-stack previous # oem_4 is [
+alt + oem_6             : komorebic cycle-stack next # oem_6 is ]
+alt + shift + oem_4             : komorebic cycle-stack-index previous # oem_4 is [
+alt + shift + oem_6             : komorebic cycle-stack-index next # oem_6 is ]
+
+# Resize
+win + shift + oem_plus          : komorebic resize-axis horizontal increase
+win + shift + oem_minus         : komorebic resize-axis horizontal decrease
+win + oem_plus  : komorebic resize-axis vertical increase
+win + oem_minus : komorebic resize-axis vertical decrease
+
+# Layouts
+#alt + x                 : komorebic flip-layout horizontal
+#alt + y                 : komorebic flip-layout vertical
+
+# Cycle workspaces
+win + a                 : komorebic cycle-workspace previous
+win + d                 : komorebic cycle-workspace next
+win + alt + a           : komorebic cycle-send-to-workspace previous
+win + alt + d           : komorebic cycle-send-to-workspace next
+
+# Workspaces
+win + 1 : komorebic focus-named-workspace 1
+win + 2 : komorebic focus-named-workspace 2
+win + 3 : komorebic focus-named-workspace 3
+win + 4 : komorebic focus-named-workspace 4
+win + 5 : komorebic focus-named-workspace 5
+win + 9 : komorebic focus-named-workspace 9
+win + 0 : komorebic focus-named-workspace 0
+
+win + shift + t : komorebic focus-named-workspace 1
+win + shift + c : komorebic focus-named-workspace 2
+win + shift + s : komorebic focus-named-workspace 3
+win + shift + d : komorebic focus-named-workspace 4
+win + shift + o : komorebic focus-named-workspace 5
+win + shift + e : komorebic focus-named-workspace 9
+win + shift + 0 : komorebic load-resize "C:\Users\Ryzen\.config\komorebic-resizes\entertainment"
+
+# Move windows
+win + alt + 1           : komorebic move-to-named-workspace 1
+win + alt + 2           : komorebic move-to-named-workspace 2
+win + alt + 3           : komorebic move-to-named-workspace 3
+win + alt + 4           : komorebic move-to-named-workspace 4
+win + alt + 5           : komorebic move-to-named-workspace 5
+win + alt + 9           : komorebic move-to-named-workspace 9
+win + alt + 0           : komorebic move-to-named-workspace 0
+
+win + shift + f                 : komorebic toggle-maximize
+win + shift + q                 : komorebic toggle-tiling
+win + shift + w                 : komorebic toggle-floating
+win + f                 : komorebic toggle-monocle
+win + q                 : komorebic close
