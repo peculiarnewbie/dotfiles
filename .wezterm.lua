@@ -98,19 +98,24 @@ wezterm.on("gui-startup", function(cmd)
 	local tab, home_pane, window = mux.spawn_window({
 		workspace = "home",
 	})
-	local kanata_pane = home_pane:split({
+	local whkd_pane = home_pane:split({
 		direction = "Top",
-		size = 0.6,
+		size = 0.5,
 	})
-	local sunshine_pane = kanata_pane:split({
+	local sunshine_pane = whkd_pane:split({
 		direction = "Right",
-		size = 0.4,
+		size = 0.5,
+	})
+	local ahk_pane = home_pane:split({
+		direction = "Right",
+		size = 0.5,
 	})
 
 	tab:set_title("run")
-	kanata_pane:send_text("kanata-cmd -n\r\n")
+	whkd_pane:send_text("whkd\r\n")
 	home_pane:send_text("syncthing \r\n")
 	sunshine_pane:send_text("sunshine \r\n")
+	ahk_pane:send_text("C:/Users/Ryzen/git/other/dotfiles/windows-remap/remap.exe \r\n")
 
 	local newtab, yazi_pane, new_window = window:spawn_tab({})
 	yazi_pane:send_text("yy \r\n")
