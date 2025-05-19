@@ -1,0 +1,82 @@
+{
+	"workbench.colorTheme": "Catppuccin Mocha",
+	"window.menuBarVisibility": "toggle",
+	"editor.fontSize": 12,
+	"editor.scrollbar.vertical": "hidden",
+	"editor.scrollbar.verticalScrollbarSize": 0,
+	"security.workspace.trust.untrustedFiles": "newWindow",
+	"security.workspace.trust.startupPrompt": "never",
+	"security.workspace.trust.enabled": false,
+	"editor.fontFamily": "CommitMono",
+	"extensions.autoUpdate": "onlySelectedExtensions",
+	"terminal.external.linuxExec": "kitty",
+	"terminal.explorerKind": "both",
+	"terminal.sourceControlRepositoriesKind": "both",
+	"telemetry.telemetryLevel": "off",
+	"workbench.iconTheme": "vscode-icons",
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"editor.formatOnSave": true,
+	"prettier.useTabs": true,
+	"prettier.tabWidth": 4,
+	"workbench.sideBar.location": "right",
+	"editor.minimap.autohide": true,
+	"svelte.enable-ts-plugin": true,
+	"workbench.editor.labelFormat": "short",
+	"vim.smartRelativeLine": true,
+	"vim.easymotion": true,
+	"editor.cursorSurroundingLines": 12,
+	"terminal.integrated.altClickMovesCursor": false,
+	"[jsonc]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"vim.leader": "space",
+	"vim.normalModeKeyBindings": [
+		{
+			"before": ["<leader>", "e"],
+			"commands": ["workbench.view.explorer"]
+		},
+		{
+			"before": ["<leader>", "x"],
+			"commands": ["workbench.action.closeActiveEditor"]
+		}
+	],
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"editor.formatOnPaste": true,
+	"editor.formatOnType": true,
+	"[css]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[mdx]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"extensions.experimental.affinity": {
+		"asvetliakov.vscode-neovim": 1
+	},
+	"git.openRepositoryInParentFolders": "always",
+	"[astro]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"todohighlight.isEnable": false,
+	"todohighlight.include": [
+		"**/*.js",
+		"**/*.jsx",
+		"**/*.ts",
+		"**/*.tsx",
+		"**/*.html",
+		"**/*.php",
+		"**/*.css",
+		"**/*.scss",
+		"**/*.astro"
+	],
+	"godotTools.editorPath.godot4": "godot-mono"
+}

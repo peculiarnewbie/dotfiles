@@ -1,0 +1,16 @@
+[[manager.prepend_keymap]]
+on   = [ "<C-s>" ]
+run  = 'shell "$SHELL" --block --confirm'
+desc = "Open shell here"
+
+[[manager.prepend_keymap]]
+on   = [ "<C-p>" ]
+run = '''
+shell --confirm 'for file in ./*
+do
+cwebp -q 80 "$file" -o "${file%.jpg}.webp" -mt
+done'
+'''
+# run  = 'for file in $@ ; do ; cwebp -q 80 "$file" -o "${file%.jpg}.webp}" -mt; done'
+desc = "converts jpg to webp"
+

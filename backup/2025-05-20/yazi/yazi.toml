@@ -1,0 +1,9 @@
+[opener]
+play = [
+	{ run = 'vlc "$@"', orphan = true, for = "unix" },
+	{ run = 'mpv "$@"', orphan = true, for = "unix" },
+	{ run = 'handbrake "$@"', orphan = true, for = "unix" },
+]
+open = [
+	{ run = 'xdg-open "$@"', desc = "Open" },
+]

@@ -1,0 +1,17 @@
+modmap:
+  - name: my remaps
+    remap:
+      CapsLock:
+        held: leftctrl
+        alone: esc
+        alone_timeout_millis: 150
+      rightctrl:
+        held: [ctrl_l, super_l, alt_l]
+        alone: rightctrl
+        alone_timeout_millis: 200
+        #device:
+        #only: '/dev/input/event10'
+      tab:
+        held: [ctrl_l, super_l, alt_l]
+        alone: tab
+        alone_timeout_millis: 150

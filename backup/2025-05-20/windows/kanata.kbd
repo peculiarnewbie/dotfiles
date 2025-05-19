@@ -1,0 +1,200 @@
+;; Comments are prefixed by double-semicolon. A single semicolon is parsed as the
+;; keyboard key. Comments are ignored for the configuration file.
+;;
+;; This configuration language is Lisp-like. If you're unfamiliar with Lisp,
+;; don't be alarmed. The maintainer jtroo is also unfamiliar with Lisp. You
+;; don't need to know Lisp in-depth to be able to configure kanata.
+;;
+;; If you follow along with the examples, you should be fine. Kanata should
+;; also hopefully have helpful error messages in case something goes wrong.
+;; If you need help, you are welcome to ask.
+
+;; Only one defsrc is allowed.
+;;
+;; defsrc defines the keys that will be intercepted by kanata. The order of the
+;; keys matches with deflayer declarations and all deflayer declarations must
+;; have the same number of keys as defsrc. Any keys not listed in defsrc will
+;; be passed straight to the operating system.
+(defsrc
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet rctl
+)
+
+;; The first layer defined is the layer that will be active by default when
+;; kanata starts up. This layer is the standard QWERTY layout except for the
+;; backtick/grave key (@grl) which is an alias for a tap-hold key.
+(deflayer qwerty
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  @tbs q    w    e    r    t    y    u    i    o    p    [    ]    \
+  @cap a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl @met lalt           spc            ralt rmet rctl
+)
+
+
+;; defalias is used to declare a shortcut for a more complicated action to keep
+;; the deflayer declarations clean and aligned. The alignment in deflayers is not
+;; necessary, but is strongly recommended for ease of understanding visually.
+;;
+;; Aliases are referred to by `@<alias_name>`.
+(defalias
+
+  qwr (layer-switch qwerty)
+  mse (layer-switch mouse)
+
+  ;; tap for capslk, hold for lctl
+  cap (tap-hold-press 200 200 esc lctl)
+
+  tbs (tap-hold-press 200 200 tab (layer-toggle tb))
+  met (tap-hold-press 200 200 lmet (layer-toggle meta))
+;;met (layer-switch meta)
+)
+
+;; The `lrld` action stands for "live reload". This will re-parse everything
+;; except for linux-dev, meaning you cannot live reload and switch keyboard
+;; devices.
+;;
+;; The keys 1 and 2 switch the base layer to qwerty and dvorak respectively.
+;;
+;; Apart from the layer switching and live reload, all other keys are the
+;; underscore _ which means "transparent". Transparent means the base layer
+;; behaviour is used when pressing that key.
+
+(deflayer tb
+  lrld _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    @kun @kmn @kw0 _    _    _    _    _    @kw1  @kw3 _    _    _
+  _    _    _    @kw4 @kmc @kmcy left down up  right _    _    _
+  _    _    _    @kw2 _    _    _    _    _    _    _    _
+  _    _    _              @mse           _    _    _
+)
+
+(deflayer mouse
+  lrld _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    @mau _    _    _    _    _    _    _    _    _    _    _
+  @qwr @mal @mad @mar mlft mrgt _    @mwd @mwu _    _    _    _
+  _    _    _    _    mmid _    _    _    _    _    _    _
+  _    _    _              mlft           _    _    _
+)
+
+;; mouse stuff
+(defalias
+  mau (movemouse-accel-up 2 250 1 5)
+  mal (movemouse-accel-left 2 250 1 5)
+  mad (movemouse-accel-down 2 250 1 5)
+  mar (movemouse-accel-right 2 250 1 5)
+
+  mwu (mwheel-up 50 120)
+  mwd (mwheel-down 50 120)
+
+)
+
+
+(deflayer meta
+  _    @kw0 @kw1 @kw2 @kw3 @kw4 @kw5 @kw6 _    _    _    _    _    _
+  _    @kcl _    _    M-r  @alc _    _    _    _    _    _    _    _
+  @qwr @kwcp _    @kwcn @kff _    @kfcl @kfcd @kfcu @kfcr _    _    @kwn
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    @qwr @kalt          M-spc          _    _    _
+)
+
+
+(deflayer meta-alt
+  _ @kmw0 @kmw1 @kmw2 @kmw3 @kmw4 @kmw5 @kmw6 _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  @qwr @ksp _    @ksn _    _    @kml @kmd @kmu @kmr _    _    _
+  _    _    _    _    _    _    _    @kmin _    _    _    _
+  _    _    _              _              _    _    _
+)
+
+;; mostly komorebi stuff
+
+(defcfg
+  danger-enable-cmd yes
+)
+
+(defalias
+
+  kalt (layer-toggle meta-alt)
+
+  kfcl (cmd komorebic focus left)
+  kfcu (cmd komorebic focus up)
+  kfcd (cmd komorebic focus down)
+  kfcr (multi (cmd komorebic focus right) lmet)
+
+  kff (cmd komorebic toggle-maximize)
+  kcl (cmd komorebic close)
+
+  kwcn (cmd komorebic cycle-workspace next)
+  kwcp (cmd komorebic cycle-workspace previous)
+  kwn (cmd komorebic new-workspace)
+
+  ksn (cmd komorebic cycle-send-to-workspace next)
+  ksp (cmd komorebic cycle-send-to-workspace previous)
+
+  kml (cmd komorebic move left)
+  kmu (cmd komorebic move up)
+  kmd (cmd komorebic move down)
+  kmr (cmd komorebic move right)
+
+  kw0 (cmd komorebic focus-named-workspace Entertainment)
+  kw1 (cmd komorebic focus-named-workspace Write)
+  kw2 (cmd komorebic focus-named-workspace Code)
+  kw3 (cmd komorebic focus-named-workspace Productive)
+  kw4 (cmd komorebic focus-named-workspace Contact)
+  kw5 (cmd komorebic focus-named-workspace Game)
+  kw6 (cmd komorebic focus-named-workspace Steam)
+
+  kmw0 (cmd komorebic move-to-named-workspace Entertainment)
+  kmw1 (cmd komorebic move-to-named-workspace Write)
+  kmw2 (cmd komorebic move-to-named-workspace Code)
+  kmw3 (cmd komorebic move-to-named-workspace Productive)
+  kmw4 (cmd komorebic move-to-named-workspace Contact)
+  kmw5 (cmd komorebic move-to-named-workspace Game)
+  kmw6 (cmd komorebic move-to-named-workspace Steam)
+  
+  kmc (cmd komorebic toggle-monocle)
+  kmcy (multi @kmc (layer-switch tbm))
+
+  kun (cmd komorebic toggle-tiling)
+  kmn (cmd komorebic toggle-float)
+  kmin (cmd komorebic minimize)
+
+  alc (cmd powershell alacritty)
+)
+
+(deflayer numbers
+  lrld _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _              _              _    _    _
+)
+
+(deflayer tbm
+  lrld _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    @tbl @tbd @tbu @tbr _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _              _              _    _    _
+)
+
+(defalias
+  mnq (multi @kmc (layer-switch qwerty))
+  kfcr2 (cmd komorebic focus right)
+
+  tbl (multi @kfcl @mnq)
+  tbd (multi @kfcd @mnq)
+  tbu (multi @kfcu @mnq)
+  tbr (multi @kfcr2 @mnq)
+)
+
+(deflayer none
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _              _              _    _    _
+)
