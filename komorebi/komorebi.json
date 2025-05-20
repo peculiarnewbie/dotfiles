@@ -94,7 +94,8 @@
                             "kind": "Exe",
                             "matching_strategy": "Contains"
                         }
-                    ]
+                    ],
+                    "window_container_behaviour": "Append"
                 },
                 {
                     "name": "4",
