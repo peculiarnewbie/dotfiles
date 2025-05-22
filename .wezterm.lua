@@ -115,7 +115,7 @@ wezterm.on("gui-startup", function(cmd)
 	whkd_pane:send_text("whkd\r\n")
 	home_pane:send_text("syncthing \r\n")
 	sunshine_pane:send_text("sunshine \r\n")
-	ahk_pane:send_text("C:/Users/Ryzen/git/other/dotfiles/windows-remap/remap.exe \r\n")
+	ahk_pane:send_text("kanata-cmd -n \r\n")
 
 	local newtab, yazi_pane, new_window = window:spawn_tab({})
 	yazi_pane:send_text("yy \r\n")

@@ -35,6 +35,11 @@
             "id": "p4v",
             "kind": "Exe",
             "matching_strategy": "Contains"
+        },
+        {
+            "id": "p4merge",
+            "kind": "Exe",
+            "matching_strategy": "Contains"
         }
     ],
     "monitors": [
