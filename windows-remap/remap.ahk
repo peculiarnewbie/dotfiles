@@ -3,7 +3,7 @@
 
 $*CapsLock::
 {
-    if (KeyWait("CapsLock", "T0.1")) {
+    if (KeyWait("CapsLock", "T0.08")) {
         Send("{Esc}")
     } else {
         Send("{Ctrl down}")

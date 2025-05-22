@@ -43,8 +43,8 @@
 
 (deflayer tb
     @lye
-    _ @kun @kmn @kw9 _ @kw1 _ _ _ @kw6 @kw0
-    _ @kw4 @kw3 @kw5 @kmc _ left down up right
+    _ @kun @kmn @kw9 _ @kw1 _ _ _ @kw5 @kw0
+    _ _ @kw3 @kw4 @kmc _ left down up right
     _ _ @kw2 _ _ _ _ _
     pp
 )

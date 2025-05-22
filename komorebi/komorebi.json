@@ -30,6 +30,13 @@
             "matching_strategy": "Equals"
         }
     ],
+    "floating_applications": [
+        {
+            "id": "p4v",
+            "kind": "Exe",
+            "matching_strategy": "Contains"
+        }
+    ],
     "monitors": [
         {
             "work_area_offset": {
