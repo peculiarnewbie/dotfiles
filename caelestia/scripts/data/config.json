@@ -1,0 +1,40 @@
+{
+    "toggles": {
+        "communication": {
+            "apps": [
+                {
+                    "selector": ".class == \"vesktop\"",
+                    "spawn": "vesktop",
+                    "action": "spawn move"
+                }
+            ]
+        },
+        "music": {
+            "apps": [
+                {
+                    "selector": ".class == \"com.github.th_ch.youtube_music\" or .initialTitle == \"Spotify\" or .initialTitle == \"Spotify Free\"",
+                    "spawn": "youtube-music",
+                    "action": "spawn move"
+                }
+            ]
+        },
+        "sysmon": {
+            "apps": [
+                {
+                    "selector": ".class == \"btop\" and .title == \"btop\" and .workspace.name == \"special:sysmon\"",
+                    "spawn": "foot -a 'btop' -T 'btop' -- btop",
+                    "action": "spawn"
+                }
+            ]
+        },
+        "todo": {
+            "apps": [
+                {
+                    "selector": ".class == \"obsidian\"",
+                    "spawn": "obsidian",
+                    "action": "spawn move"
+                }
+            ]
+        }
+    }
+}
