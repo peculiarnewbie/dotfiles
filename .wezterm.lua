@@ -83,6 +83,13 @@ config.keys = {
 	{ key = "l", mods = "SHIFT|ALT", action = act.MoveTabRelative(1) },
 	{ key = "t", mods = "CTRL", action = act.SpawnTab("DefaultDomain") },
 	{ key = "n", mods = "ALT", action = act.SpawnTab("DefaultDomain") },
+	{
+		key = "N",
+		mods = "ALT",
+		action = wezterm.action_callback(function(win, pane)
+			local tab, window = pane:move_to_new_window()
+		end),
+	},
 }
 
 local mux = wezterm.mux
@@ -111,10 +118,6 @@ wezterm.on("gui-startup", function(cmd)
 	whkd_pane:send_text("whkd\r\n")
 	home_pane:send_text("syncthing \r\n")
 	ahk_pane:send_text("kanata-cmd -n \r\n")
-
-	local newtab, yazi_pane, new_window = window:spawn_tab({})
-	yazi_pane:send_text("yy \r\n")
-	newtab:set_title("yazi")
 
 	local last_tab, last_pane, last_window = window:spawn_tab({})
 	local split_pane = last_pane:split({
