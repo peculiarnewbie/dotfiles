@@ -15,6 +15,6 @@ vim.keymap.set({ "n" }, "<leader>e", function()
     vim.cmd("NvimTreeClose")
   else
     -- If we're not in nvim-tree, focus/open it
-    vim.cmd("NvimTreeFocus")
+    vim.cmd("NvimTreeFindFile")
   end
 end, { desc = "nvim tree smart toggle" })
