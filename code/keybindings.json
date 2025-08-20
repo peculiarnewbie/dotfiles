@@ -125,8 +125,7 @@
     {
         "key": "shift+k",
         "command": "editor.action.showDefinitionPreviewHover",
-        "when": "vim.mode == 'Normal' && !renameInputVisible"
-        // "when": "editorTextFocus && inputFocus && notebookEditorFocused && vim.mode == 'Normal'"
+        "when": "!renameInputVisible && editorTextFocus && vim.active && vim.mode != 'Insert'"
     },
     {
         "key": "ctrl+j",
