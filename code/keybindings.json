@@ -125,7 +125,7 @@
     {
         "key": "shift+k",
         "command": "editor.action.showDefinitionPreviewHover",
-        "when": " vim.mode == 'Normal'"
+        "when": "vim.mode == 'Normal' && !renameInputVisible"
         // "when": "editorTextFocus && inputFocus && notebookEditorFocused && vim.mode == 'Normal'"
     },
     {
@@ -147,7 +147,7 @@
         "command": "workbench.action.focusRightGroup"
     },
     {
-        "key": "space s",
+        "key": "space p",
         "command": "workbench.action.quickOpenPreviousEditor",
         "when": "editorTextFocus && vim.active && vim.mode != 'Insert'"
     },
@@ -158,17 +158,57 @@
     },
     {
         "key": "space e",
-        "command": "workbench.action.closeSidebar",
-        "when": "filesExplorerFocus && !inputFocus"
-    },
-    {
-        "key": "space e",
         "command": "workbench.view.explorer",
         "when": "editorTextFocus && vim.active && vim.mode != 'Insert'"
     },
     {
+        "key": "space e",
+        "command": "workbench.action.closeSidebar",
+        "when": "sideBarFocus"
+    },
+    {
+        "key": "space s",
+        "command": "workbench.view.search.focus",
+        "when": "editorTextFocus && vim.active && vim.mode != 'Insert'"
+    },
+    {
+        "key": "space c",
+        "command": "workbench.files.action.collapseExplorerFolders",
+        "when": "sideBarFocus"
+    },
+    {
         "key": "space f",
         "command": "workbench.action.toggleZenMode",
-        "when": "!isAuxiliaryWindowFocusedContext && editorTextFocus && vim.active && vim.mode != 'Insert'"
+        "when": "editorTextFocus && vim.active && vim.mode != 'Insert' && !isAuxiliaryWindowFocusedContext"
+    },
+    {
+        "key": "alt+q",
+        "command": "workbench.action.closeSidebar",
+        "when": "sideBarVisible"
+    },
+    {
+        "key": "alt+q",
+        "command": "workbench.action.closeAuxiliaryBar",
+        "when": "auxiliaryBarVisible"
+    },
+    {
+        "key": "ctrl+alt+down",
+        "command": "-editor.action.insertCursorBelow",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+alt+down",
+        "command": "-quickInput.nextSeparator",
+        "when": "inQuickInput && quickInputType == 'quickPick'"
+    },
+    {
+        "key": "ctrl+alt+up",
+        "command": "-editor.action.insertCursorAbove",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+alt+up",
+        "command": "-quickInput.previousSeparator",
+        "when": "inQuickInput && quickInputType == 'quickPick'"
     }
 ]

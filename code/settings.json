@@ -18,7 +18,7 @@
     "editor.formatOnSave": true,
     "prettier.tabWidth": 4,
     "workbench.sideBar.location": "right",
-    "editor.minimap.autohide": true,
+    "editor.minimap.autohide": "mouseover",
     "svelte.enable-ts-plugin": true,
     "workbench.editor.labelFormat": "short",
     "vim.easymotion": true,
@@ -99,7 +99,7 @@
     "window.menuBarVisibility": "toggle",
     "cmake.showOptionsMovedNotification": false,
     "typescript.preferences.autoImportFileExcludePatterns": ["^(node:)?os$"],
-    "window.customTitleBarVisibility": "auto",
+    "window.customTitleBarVisibility": "windowed",
     "vim.foldfix": true,
     "go.toolsManagement.autoUpdate": true,
     "workbench.startupEditor": "none",
@@ -119,5 +119,6 @@
     "workbench.colorCustomizations": {
         "editor.selectionBackground": "#ffffff60",
         "editor.selectionHighlightBackground": "#ffffff30"
-    }
+    },
+    "window.commandCenter": false
 }
