@@ -11,23 +11,23 @@ gtk-custom-css = /home/bolt/.config/ghostty/custom-bar.css
 
 
 # Splits
-keybind = alt+n>d=new_split:right
-keybind = alt+d=goto_split:right
+keybind = alt+n>l=new_split:right
+keybind = alt+l=goto_split:right
 
-keybind = alt+n>a=new_split:left
-keybind = alt+a=goto_split:left
+keybind = alt+n>h=new_split:left
+keybind = alt+h=goto_split:left
 
-keybind = alt+n>s=new_split:down
-#keybind = alt+s=goto_split:down
+keybind = alt+n>j=new_split:down
+#keybind = alt+j=goto_split:down
 
-keybind = alt+n>w=new_split:up
-#keybind = alt+w=goto_split:up
+keybind = alt+n>k=new_split:up
+#keybind = alt+k=goto_split:up
 
 # Tabs
-keybind = alt+n>l=new_tab
-keybind = alt+l=next_tab
+keybind = alt+n>d=new_tab
+keybind = alt+d=next_tab
 
-keybind = alt+h=previous_tab
+keybind = alt+a=previous_tab
 
 keybind = alt+r=reload_config
 keybind = alt+q=close_surface
@@ -38,3 +38,5 @@ window-padding-balance = true
 window-padding-x = 0
 window-padding-y = 0
 window-padding-color = extend
+
+command = /usr/bin/zsh
