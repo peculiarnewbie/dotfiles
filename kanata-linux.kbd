@@ -17,21 +17,29 @@
 ;; be passed straight to the operating system.
 
 (defsrc
-    tab 
-    caps
+    3 0
+    tab q w e r t y u i o p
+    caps a s d f g h j k l
+    z x c v b n m /
+    spc f23
 )
+
 
 (deflayer qwerty
-    @tbs
-    @cap
+    3 0
+    @tbs q w e r t y u i o p
+    @cap a s d f g h j k l
+    z x c v b n m /
+    spc @pil
 )
-
 
 (defalias
   ;; tap for capslk, hold for lctl
   cap (tap-hold-release 100 100 esc lctl)
-  tbs (tap-hold-release 100 100 tab C-A-lmet)
+  ;; tab for tap, hold for mymod
+  mymod (multi lctl lmet lalt)
+  tbs (tap-hold-release 100 100 tab @mymod)
   ;;tbs (tap-hold-release 100 100 tab lmet)
+  pmod (multi lctl lmet lalt lshift)
+  pil (tap-hold-release 100 100 rctl @pmod)
 )
-
-
