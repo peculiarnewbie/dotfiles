@@ -29,6 +29,26 @@ autoload -Uz compinit; compinit
 zmodload zsh/complist
 zstyle ':completion:*' menu select
 
+# Single-user ssh-agent bootstrap reused across shells
+export SSH_ENV="$HOME/.ssh/agent_env"
+
+start_agent() {
+  ssh-agent -s >| "$SSH_ENV"
+  chmod 600 "$SSH_ENV"
+  . "$SSH_ENV" >/dev/null
+  ssh-add ~/.ssh/id_ed25519
+}
+
+if [ -f "$SSH_ENV" ]; then
+  . "$SSH_ENV" >/dev/null
+  # If the agent recorded in file isn't alive, start a new one
+  if ! ssh-add -l >/dev/null 2>&1; then
+    start_agent
+  fi
+else
+  start_agent
+fi
+
 function yy() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
