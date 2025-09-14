@@ -34,72 +34,15 @@
 
 (defalias
 
-  qwr (layer-switch qwerty)
-
   ;; tap for capslk, hold for lctl
   cap (tap-hold-release 100 100 esc lctl)
-  tbs (tap-hold-release 100 100 tab (layer-toggle tb))
-)
-
-(deflayer tb
-    @lye
-    _ @kun @kmn @kw9 _ @kw1 _ _ _ @kw5 @kw0
-    _ _ @kw3 @kw4 @kmc _ left down up right
-    _ _ @kw2 _ _ _ _ _
-    pp
+  ;; tab for tap, hold for mymod
+  mymod (multi lmet lshift)
+  tbs (tap-hold-release 100 100 tab @mymod)
 )
 
 
-;; mostly komorebi stuff
+;;(defcfg
+  ;;danger-enable-cmd yes
+;;)
 
-(defcfg
-  danger-enable-cmd yes
-)
-
-(defalias
-
-
-  kfcl (cmd komorebic focus left)
-  kfcu (cmd komorebic focus up)
-  kfcd (cmd komorebic focus down)
-  kfcr (multi (cmd komorebic focus right) lmet)
-  ;;kfcr (cmd komorebic focus right)
-
-  kff (cmd komorebic toggle-maximize)
-  kcl (cmd komorebic close)
-
-  kwcn (cmd komorebic cycle-workspace next)
-  kwcp (cmd komorebic cycle-workspace previous)
-  kwn (cmd komorebic new-workspace)
-
-  ksn (cmd komorebic cycle-send-to-workspace next)
-  ksp (cmd komorebic cycle-send-to-workspace previous)
-
-  kml (cmd komorebic move left)
-  kmu (cmd komorebic move up)
-  kmd (cmd komorebic move down)
-  kmr (cmd komorebic move right)
-
-  kw1 (cmd komorebic focus-named-workspace 1)
-  kw2 (cmd komorebic focus-named-workspace 2)
-  kw3 (cmd komorebic focus-named-workspace 3)
-  kw4 (cmd komorebic focus-named-workspace 4)
-  kw5 (cmd komorebic focus-named-workspace 5)
-  kw6 (cmd komorebic focus-named-workspace 6)
-  kw9 (cmd komorebic focus-named-workspace 9)
-  kw0 (cmd komorebic focus-named-workspace 0)
-
-  kmc (cmd komorebic toggle-monocle)
-
-  kun (cmd komorebic toggle-tiling)
-  kmn (cmd komorebic toggle-float)
-  kmin (cmd komorebic minimize)
-
-  trm (cmd powershell wezterm)
-
-  lye (cmd komorebic load-resize "C:\Users\Ryzen\.config\komorebic-resizes\entertainment")
-  lyt (cmd komorebic load-resize "C:\Users\Ryzen\.config\komorebic-resizes\term")
-
-  krt (cmd komorebic retile)
-
-)
