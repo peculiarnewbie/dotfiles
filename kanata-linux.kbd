@@ -1,0 +1,37 @@
+;; Comments are prefixed by double-semicolon. A single semicolon is parsed as the
+;; keyboard key. Comments are ignored for the configuration file.
+;;
+;; This configuration language is Lisp-like. If you're unfamiliar with Lisp,
+;; don't be alarmed. The maintainer jtroo is also unfamiliar with Lisp. You
+;; don't need to know Lisp in-depth to be able to configure kanata.
+;;
+;; If you follow along with the examples, you should be fine. Kanata should
+;; also hopefully have helpful error messages in case something goes wrong.
+;; If you need help, you are welcome to ask.
+
+;; Only one defsrc is allowed.
+;;
+;; defsrc defines the keys that will be intercepted by kanata. The order of the
+;; keys matches with deflayer declarations and all deflayer declarations must
+;; have the same number of keys as defsrc. Any keys not listed in defsrc will
+;; be passed straight to the operating system.
+
+(defsrc
+    tab 
+    caps
+)
+
+(deflayer qwerty
+    @tbs
+    @cap
+)
+
+
+(defalias
+  ;; tap for capslk, hold for lctl
+  cap (tap-hold-release 100 100 esc lctl)
+  tbs (tap-hold-release 100 100 tab C-A-lmet)
+  ;;tbs (tap-hold-release 100 100 tab lmet)
+)
+
+

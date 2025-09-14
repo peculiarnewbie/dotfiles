@@ -11,5 +11,5 @@ modmap:
         held: [Control_L, Alt_L, Super_L]
         alone: KEY_TAB
       F23:
-        held: [Control_L, Alt_L, Super_L]
+        held: [Control_L, ALT_L, Super_L, Shift_L]
         alone: Control_R
