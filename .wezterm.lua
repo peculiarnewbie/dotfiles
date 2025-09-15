@@ -42,27 +42,27 @@ config.keys = {
 		action = act.CloseCurrentPane({ confirm = true }),
 	},
 	{
-		key = "a",
+		key = "h",
 		mods = "ALT",
 		action = act.ActivatePaneDirection("Left"),
 	},
 	{
-		key = "d",
+		key = "l",
 		mods = "ALT",
 		action = act.ActivatePaneDirection("Right"),
 	},
 	{
-		key = "w",
+		key = "k",
 		mods = "ALT",
 		action = act.ActivatePaneDirection("Up"),
 	},
 	{
-		key = "s",
+		key = "j",
 		mods = "ALT",
 		action = act.ActivatePaneDirection("Down"),
 	},
 	{
-		key = "D",
+		key = "L",
 		mods = "ALT",
 		action = wezterm.action.SplitPane({
 			direction = "Right",
@@ -70,17 +70,17 @@ config.keys = {
 		}),
 	},
 	{
-		key = "S",
+		key = "J",
 		mods = "ALT",
 		action = wezterm.action.SplitPane({
 			direction = "Down",
 			size = { Percent = 50 },
 		}),
 	},
-	{ key = "h", mods = "ALT", action = act.ActivateTabRelative(-1) },
-	{ key = "l", mods = "ALT", action = act.ActivateTabRelative(1) },
-	{ key = "h", mods = "SHIFT|ALT", action = act.MoveTabRelative(-1) },
-	{ key = "l", mods = "SHIFT|ALT", action = act.MoveTabRelative(1) },
+	{ key = "a", mods = "ALT", action = act.ActivateTabRelative(-1) },
+	{ key = "d", mods = "ALT", action = act.ActivateTabRelative(1) },
+	{ key = "a", mods = "SHIFT|ALT", action = act.MoveTabRelative(-1) },
+	{ key = "d", mods = "SHIFT|ALT", action = act.MoveTabRelative(1) },
 	{ key = "t", mods = "CTRL", action = act.SpawnTab("DefaultDomain") },
 	{ key = "n", mods = "ALT", action = act.SpawnTab("DefaultDomain") },
 	{
