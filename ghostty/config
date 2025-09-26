@@ -32,7 +32,7 @@ keybind = alt+a=previous_tab
 keybind = alt+r=reload_config
 keybind = alt+q=close_surface
 
-theme = detuned
+theme = Detuned
 
 window-padding-balance = true
 window-padding-x = 0
