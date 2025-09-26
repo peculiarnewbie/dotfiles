@@ -80,6 +80,7 @@
                 },
                 {
                     "name": "3",
+                    "layout": "BSP",
                     "initial_workspace_rules": [
                         {
                             "id": "steam",
@@ -127,6 +128,17 @@
                         {
                             "id": "Obsidian",
                             "kind": "Exe",
+                            "matching_strategy": "Contains"
+                        }
+                    ]
+                },
+                {
+                    "name": "6",
+                    "layout": "BSP",
+                    "initial_workspace_rules": [
+                        {
+                            "id": "T3 Chat",
+                            "kind": "Title",
                             "matching_strategy": "Contains"
                         }
                     ]
