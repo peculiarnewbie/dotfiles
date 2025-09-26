@@ -29,14 +29,12 @@ $monitor1 = $elements | Select-Object -First 1
 $lastFocusedFile = Join-Path $PSScriptRoot '.lastFocused'
 $lastFocused = Get-SharedVar 
 $focused = $monitor1 | Select-Object -ExpandProperty workspaces | Select-Object -ExpandProperty focused | ForEach-Object {[int]$_ + 1}
-write-host target: $target latFocused: $lastFocused focused: $focused
 if($focused -ne $target){
 	if($focused -in 1,2,3){
 		Set-SharedVar -Value $focused
 	}
 	komorebic focus-named-workspace $target
 } else {
-	write-host going back to $lastFocused
 	komorebic focus-named-workspace $lastFocused
 }
 

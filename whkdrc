@@ -81,6 +81,7 @@ win + shift + c : komorebic focus-named-workspace 2
 win + shift + s : komorebic focus-named-workspace 3
 win + shift + d : C:"\Users\Ryzen\git\dotfiles\scripts\special.ps1" 4
 win + shift + w : C:"\Users\Ryzen\git\dotfiles\scripts\special.ps1" 5
+win + shift + 3 : C:"\Users\Ryzen\git\dotfiles\scripts\special.ps1" 6
 win + shift + e : komorebic focus-named-workspace 9
 win + shift + 0 : komorebic load-resize "C:\Users\Ryzen\.config\komorebic-resizes\entertainment"
 
