@@ -59,6 +59,9 @@ function yy() {
 
 alias ls="exa"
 
+# bun
+export PATH="/home/bolt/.cache/.bun/bin:$PATH"
+
 eval "$(starship init zsh)"
 
 eval "$(zoxide init zsh)"

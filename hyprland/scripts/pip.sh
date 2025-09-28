@@ -1,5 +1,7 @@
-PIP_NAME="Picture-in-Picture"
-PIP_WINDOW=$(hyprctl -j clients | jq '.[] | select(.title == "Picture-in-Picture") | {size: .size, at: .at}')
+PIP_NAME="(?i)^picture(?:[-\s]in[-\s]picture)$"
+PIP_WINDOW=$(hyprctl -j clients | jq --arg re "$PIP_NAME" '
+  .[] | select(.title | test($re)) | {size: .size, at: .at}
+')
 
 # echo "$PIP_WINDOW"
 PIP_X_SIZE=$(echo "$PIP_WINDOW" | jq '.size[0]')
@@ -24,13 +26,13 @@ echo "$PIPSTATE"
 
 case $PIPSTATE in
 0)
-  hyprctl dispatch movewindowpixel "exact $LEFT_EDGE $(($BOTTOM_EDGE - $PIP_Y_SIZE)),title:^(Picture-in-Picture)$"
+  hyprctl dispatch movewindowpixel "exact $LEFT_EDGE $(($BOTTOM_EDGE - $PIP_Y_SIZE)),title:$PIP_NAME"
   ;;
 1)
-  hyprctl dispatch movewindowpixel "exact $(($RIGHT_EDGE - $PIP_X_SIZE)) $(($BOTTOM_EDGE - $PIP_Y_SIZE)),title:^(Picture-in-Picture)$"
+  hyprctl dispatch movewindowpixel "exact $(($RIGHT_EDGE - $PIP_X_SIZE)) $(($BOTTOM_EDGE - $PIP_Y_SIZE)),title:$PIP_NAME"
   ;;
 2)
-  hyprctl dispatch movewindowpixel "exact $(($MIDDLE - ($PIP_X_SIZE / 2))) $TOP_EDGE,title:^(Picture-in-Picture)$"
+  hyprctl dispatch movewindowpixel "exact $(($MIDDLE - ($PIP_X_SIZE / 2))) $TOP_EDGE,title:$PIP_NAME"
   ;;
 esac
 
