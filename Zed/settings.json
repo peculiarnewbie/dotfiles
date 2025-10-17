@@ -7,21 +7,28 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "project_panel": {
-    "dock": "right"
-  },
-  "icon_theme": "Zed (Default)",
-  "base_keymap": "VSCode",
-  "telemetry": {
-    "diagnostics": true,
-    "metrics": true
-  },
-  "vim_mode": true,
-  "ui_font_size": 16,
-  "buffer_font_size": 16,
-  "theme": {
-    "mode": "dark",
-    "light": "One Light",
-    "dark": "Ayu Dark"
-  }
+    "project_panel": {
+        "dock": "right"
+    },
+    "icon_theme": "Zed (Default)",
+    "base_keymap": "VSCode",
+    "telemetry": {
+        "diagnostics": true,
+        "metrics": true
+    },
+    "vim_mode": true,
+    "ui_font_size": 16,
+    "buffer_font_size": 14,
+    "theme": {
+        "mode": "dark",
+        "light": "One Light",
+        "dark": "Carbonfox"
+    },
+    "formatter": "prettier",
+    "prettier": {
+        "allowed": true,
+        "semi": true,
+        "tabWidth": 4,
+        "printWidth": 100
+    }
 }
