@@ -18,10 +18,10 @@ keybind = alt+n>h=new_split:left
 keybind = alt+h=goto_split:left
 
 keybind = alt+n>j=new_split:down
-#keybind = alt+j=goto_split:down
+keybind = alt+j=goto_split:down
 
 keybind = alt+n>k=new_split:up
-#keybind = alt+k=goto_split:up
+keybind = alt+k=goto_split:up
 
 # Tabs
 keybind = alt+n>d=new_tab
