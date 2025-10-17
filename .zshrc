@@ -59,6 +59,8 @@ function yy() {
 
 alias ls="exa"
 
+alias zed="/home/bolt/.local/bin/zed"
+
 # bun
 export PATH="/home/bolt/.cache/.bun/bin:$PATH"
 
