@@ -61,6 +61,8 @@ alias ls="exa"
 
 alias zed="/home/bolt/.local/bin/zed"
 
+alias helium="/home/bolt/Downloads/app/helium-0.5.6.1-x86_64.AppImage &"
+
 # bun
 export PATH="/home/bolt/.cache/.bun/bin:$PATH"
 
