@@ -11,20 +11,20 @@ gtk-custom-css = /home/bolt/.config/ghostty/custom-bar.css
 
 
 # Splits
-keybind = alt+n>l=new_split:right
+keybind = alt+shift+l=new_split:right
 keybind = alt+l=goto_split:right
 
-keybind = alt+n>h=new_split:left
+keybind = alt+shift+h=new_split:left
 keybind = alt+h=goto_split:left
 
-keybind = alt+n>j=new_split:down
+keybind = alt+shift+j=new_split:down
 keybind = alt+j=goto_split:down
 
-keybind = alt+n>k=new_split:up
+keybind = alt+shift+k=new_split:up
 keybind = alt+k=goto_split:up
 
 # Tabs
-keybind = alt+n>d=new_tab
+keybind = alt+shift+d=new_tab
 keybind = alt+d=next_tab
 
 keybind = alt+a=previous_tab
