@@ -9,12 +9,12 @@ binds {
     Mod+Shift+ESCAPE                     { show-hotkey-overlay; }
 
     // ─── Applications ───
-    Mod+Return                          hotkey-overlay-title="Open Terminal: Alacritty" { spawn "alacritty"; }
+    Mod+Return                          hotkey-overlay-title="Open Terminal: Ghostty" { spawn "ghostty"; }
     Mod+CTRL+Return                     hotkey-overlay-title="Open App Launcher: noctalia launcher" { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
     Mod+B                               hotkey-overlay-title="Open Browser: firefox" { spawn "firefox"; }
     Mod+Shift+V                         hotkey-overlay-title="Focus/Launch: Vesktop" { spawn-sh "~/.config/niri/scripts/focus-or-spawn.sh '^vesktop$' -- vesktop"; }
-    Mod+ALT+L                           hotkey-overlay-title="Lock Screen: noctalia lock" { spawn-sh "qs -c noctalia-shell ipc call lockScreen lock"; }
-    Mod+Shift+Q                        hotkey-overlay-title="Session Menu: noctalia sessionMenu" { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
+    Mod+ALT+L                           { move-column-right; }
+    Mod+Shift+Q                         hotkey-overlay-title="Session Menu: noctalia sessionMenu" { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
 
     // Please choose your own file manager.
     Mod+E                               hotkey-overlay-title="File Manager: Nautilus" { spawn "nautilus"; }
@@ -46,13 +46,10 @@ binds {
     Mod+J                               { focus-window-down; }
 
     Mod+CTRL+Left                       { move-column-left; }
-    Mod+CTRL+H                          { move-column-left; }
+    Mod+CTRL+L                          hotkey-overlay-title="Lock Screen: noctalia lock" { spawn-sh "qs -c noctalia-shell ipc call lockScreen lock"; }
     Mod+CTRL+Right                      { move-column-right; }
-    Mod+CTRL+L                          { move-column-right; }
     Mod+CTRL+UP                         { move-window-up; }
-    Mod+CTRL+K                          { move-window-up; }
     Mod+CTRL+Down                       { move-window-down; }
-    Mod+CTRL+J                          { move-window-down; }
 
     Mod+Home                            { focus-column-first; }
     Mod+End                             { focus-column-last; }
@@ -117,11 +114,13 @@ binds {
     Mod+Shift+Equal                     { set-window-height "+10%"; }
 
     // ─── Modes ───
-    Mod+T                               { toggle-window-floating; }
+    Mod+Shift+T                         { toggle-window-floating; }
     Mod+F                               { fullscreen-window; }
-    Mod+W                               { toggle-column-tabbed-display; }
+    Mod+Shift+F                         { maximize-column; }
+    Mod+Shift+W                         { toggle-column-tabbed-display; }
 
     // ─── Screenshots ───
+    Print                               { spawn "~/.config/niri/scripts/screenshot-swappy.sh"; }
     CTRL+Shift+1                        { screenshot; }
     CTRL+Shift+2                        { screenshot-screen; }
     CTRL+Shift+3                        { screenshot-window; }
@@ -135,4 +134,62 @@ binds {
     CTRL+ALT+Delete                     { quit; } // Also quits Niri
     Mod+Shift+P                         { power-off-monitors; } // Turn off screens (useful for OLED or privacy)
     Mod+O                               repeat=false { toggle-overview; }
+
+    // ─── Hyprland-style aliases (mapped to niri actions/launchers) ───
+    Super+Space                         { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
+    Super+BackSpace                     { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
+
+    Super+T                             { spawn "ghostty"; }
+    Super+Z                             { spawn "firefox"; }
+
+    Super+M                             { spawn "youtube-music"; }
+    Super+N                             { spawn "obsidian" "-disable-gpu"; }
+    Super+Shift+S                       { spawn "steam"; }
+    Super+Slash                         { spawn "1password"; }
+
+    Super+Y                             { spawn "xdg-open" "https://youtube.com/"; }
+    Super+ALT+G                         { spawn "xdg-open" "https://mail.google.com/mail/u/0/#inbox"; }
+    Super+X                             { spawn "xdg-open" "https://x.com/"; }
+    Super+Shift+X                       { spawn "xdg-open" "https://x.com/compose/post"; }
+    CTRL+ALT+Super+Shift+W              { spawn "xdg-open" "https://web.whatsapp.com/"; }
+
+    Super+CTRL+Space                    { spawn "playerctl" "play-pause"; }
+
+    // Quick focus / spawn (former special workspaces)
+    CTRL+ALT+Super+D                    { spawn-sh "~/.config/niri/scripts/focus-or-spawn.sh '^vesktop$' -- vesktop"; }
+    CTRL+ALT+Super+W                    { spawn-sh "~/.config/niri/scripts/focus-or-spawn.sh '^obsidian$' -- obsidian -disable-gpu"; }
+    CTRL+ALT+Super+M                    { spawn-sh "~/.config/niri/scripts/focus-or-spawn.sh '^com\\.github\\.th_ch\\.youtube_music$' -- youtube-music"; }
+    CTRL+ALT+Super+S                    { spawn-sh "~/.config/niri/scripts/focus-or-spawn.sh '^helium$' -- helium-browser"; }
+
+    // Hypr workspace cycling aliases
+    Super+W                             { focus-workspace-up; }
+    Super+S                             { focus-workspace-down; }
+    Super+ALT+W                         { move-column-to-workspace-up; }
+    Super+ALT+S                         { move-column-to-workspace-down; }
+
+    Super+A                             { focus-column-left; }
+    Super+D                             { focus-column-right; }
+
+    Super+ALT+1                         { move-column-to-workspace 1; }
+    Super+ALT+2                         { move-column-to-workspace 2; }
+    Super+ALT+3                         { move-column-to-workspace 3; }
+    Super+ALT+4                         { move-column-to-workspace 4; }
+    Super+ALT+5                         { move-column-to-workspace 5; }
+
+    // Hypr resize/move aliases
+    Super+ALT+H                         { move-column-left; }
+    Super+ALT+K                         { move-window-up; }
+    Super+ALT+J                         { move-window-down; }
+
+    // PiP position cycling (ported from Hyprland script)
+    CTRL+ALT+Super+Period               { spawn "/home/bolt/.config/niri/scripts/pip.sh"; }
+    CTRL+ALT+Super+Shift+Right          { spawn "/home/bolt/.config/niri/scripts/pip.sh"; }
+    CTRL+ALT+Super+Shift+Up             { spawn "/home/bolt/.config/niri/scripts/pip.sh" "grow"; }
+    CTRL+ALT+Super+Shift+Down           { spawn "/home/bolt/.config/niri/scripts/pip.sh" "shrink"; }
+    CTRL+ALT+Super+Shift+Left           { spawn "/home/bolt/.config/niri/scripts/pip.sh" "reset-size"; }
+
+    Super+Shift+H                       { set-column-width "-10%"; }
+    Super+Shift+L                       { set-column-width "+10%"; }
+    Super+Shift+K                       { set-window-height "-10%"; }
+    Super+Shift+J                       { set-window-height "+10%"; }
 }
