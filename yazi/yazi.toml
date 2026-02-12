@@ -8,3 +8,12 @@ edit = [
 	{ run = 'nvim "$@"', block = true, for = "unix" },
 	{ run = "nvim %*",  block = true, for = "windows" },
 ]
+
+imv = [
+	{ run = 'imv-dir "$1"', orphan = true, desc = "imv-dir", for = "linux" },
+]
+
+[open]
+prepend_rules = [
+	{ mime = "image/*", use = "imv" },
+]

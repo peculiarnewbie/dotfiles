@@ -59,10 +59,10 @@ function yy() {
 
 alias ls="exa"
 
-alias zed="/home/bolt/.local/bin/zed"
+alias zed="/usr/bin/zeditor"
 
 # bun
-export PATH="/home/bolt/.cache/.bun/bin:$PATH"
+export PATH="/home/bolt/.bun/bin:$PATH"
 
 eval "$(starship init zsh)"
 

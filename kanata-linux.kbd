@@ -33,13 +33,19 @@
     spc @pil
 )
 
+(deflayer nav
+    _ _
+    _ _ _ _ _ _ _ _ _ _ _
+    _ _ _ _ _ _ left down up right
+    _ _ _ _ _ _ _ _
+    pp _
+)
+
 (defalias
   ;; tap for capslk, hold for lctl
   cap (tap-hold-release 100 100 esc lctl)
-  ;; tab for tap, hold for mymod
-  mymod (multi lctl lmet lalt)
-  tbs (tap-hold-release 100 100 tab @mymod)
-  ;;tbs (tap-hold-release 100 100 tab lmet)
+  ;; tab for tap, hold for nav layer
+  tbs (tap-hold-release 100 100 tab (layer-while-held nav))
   pmod (multi lctl lmet lalt lshift)
   pil (tap-hold-release 100 100 rctl @pmod)
 )
