@@ -14,11 +14,11 @@ config.color_scheme = "carbonfox"
 -- Spawn a powershell in login mode
 config.default_prog = { "C:/Program Files/PowerShell/7/pwsh.exe", "-l" }
 
-config.front_end = "WebGpu"
+config.front_end = "OpenGL"
 config.max_fps = 144
 config.font_size = 10.0
 config.use_fancy_tab_bar = false
-config.window_decorations = "RESIZE"
+config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 config.webgpu_power_preference = "HighPerformance"
 
 config.enable_scroll_bar = true
@@ -81,7 +81,6 @@ config.keys = {
 	{ key = "d", mods = "ALT", action = act.ActivateTabRelative(1) },
 	{ key = "a", mods = "SHIFT|ALT", action = act.MoveTabRelative(-1) },
 	{ key = "d", mods = "SHIFT|ALT", action = act.MoveTabRelative(1) },
-	{ key = "t", mods = "CTRL", action = act.SpawnTab("DefaultDomain") },
 	{ key = "n", mods = "ALT", action = act.SpawnTab("DefaultDomain") },
 	{
 		key = "N",
@@ -115,7 +114,6 @@ wezterm.on("gui-startup", function(cmd)
 	})
 
 	tab:set_title("run")
-	whkd_pane:send_text("whkd\r\n")
 	home_pane:send_text("syncthing \r\n")
 	ahk_pane:send_text("kanata-cmd -n \r\n")
 
@@ -124,7 +122,6 @@ wezterm.on("gui-startup", function(cmd)
 		direction = "Right",
 		size = 0.5,
 	})
-	last_pane:send_text("komorebic start --bar \r\n")
 
 	-- We want to startup in the coding workspace
 	mux.set_active_workspace("home")

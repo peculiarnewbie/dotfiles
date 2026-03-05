@@ -42,6 +42,7 @@ win + shift + oem_plus          : komorebic resize-axis horizontal increase
 win + shift + oem_minus         : komorebic resize-axis horizontal decrease
 win + oem_plus  : komorebic resize-axis vertical increase
 win + oem_minus : komorebic resize-axis vertical decrease
+win + alt + s : komorebic save-resize "D:\Ryzen\Downloads\size.json"
 
 # Layouts
 #alt + x                 : komorebic flip-layout horizontal
@@ -87,4 +88,4 @@ win + shift + 0 : komorebic load-resize "C:\Users\Ryzen\.config\komorebic-resize
 
 win + shift + f                 : komorebic toggle-maximize
 win + shift + q                 : komorebic toggle-tiling
-# win + shift + w                 : komorebic toggle-floating
+win + shift + i                 : komorebic toggle-float

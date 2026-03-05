@@ -23,7 +23,7 @@ Plug 'machakann/vim-highlightedyank'
 " Commentary plugin
 Plug 'tpope/vim-commentary'
 
-nmap <Space>s :action Switcher<CR>
+nmap <Space>p :action Switcher<CR>
 "nmap <Space>e :action ActivateProjectToolWindow<CR>
 nmap <Space>f :action ToggleDistractionFreeMode<CR>
 

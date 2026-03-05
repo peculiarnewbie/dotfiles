@@ -24,13 +24,13 @@
         "light": "One Light",
         "dark": "Carbonfox"
     },
-    "formatter": "prettier",
-    "prettier": {
-        "allowed": true,
-        "semi": true,
-        "tabWidth": 4,
-        "printWidth": 100
-    },
+    // "formatter": "prettier",
+    // "prettier": {
+    //     "allowed": true,
+    //     "semi": true,
+    //     "tabWidth": 4,
+    //     "printWidth": 100
+    // },
     "features": {
         "edit_prediction_provider": "supermaven"
     }
