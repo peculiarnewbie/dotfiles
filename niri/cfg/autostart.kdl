@@ -1,7 +1,10 @@
 // ────────────── Startup Applications ──────────────
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#spawn-sh-at-startup
 
+    spawn-sh-at-startup "/home/bolt/go/bin/niri-float-sticky &"
+    spawn-sh-at-startup "syncthing &"
     spawn-sh-at-startup "/usr/lib/polkit-kde-authentication-agent-1 &" // Polkit
+    spawn-sh-at-startup "~/.config/niri/scripts/pip-watch.sh &"
     spawn-sh-at-startup "qs -c noctalia-shell"
     spawn-sh-at-startup "ghostty"
     spawn-sh-at-startup "zen-browser"

@@ -29,24 +29,14 @@ autoload -Uz compinit; compinit
 zmodload zsh/complist
 zstyle ':completion:*' menu select
 
-# Single-user ssh-agent bootstrap reused across shells
-export SSH_ENV="$HOME/.ssh/agent_env"
+# Use systemd user service for ssh-agent (shared across all apps)
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
-start_agent() {
-  ssh-agent -s >| "$SSH_ENV"
-  chmod 600 "$SSH_ENV"
-  . "$SSH_ENV" >/dev/null
-  ssh-add ~/.ssh/id_ed25519
-}
-
-if [ -f "$SSH_ENV" ]; then
-  . "$SSH_ENV" >/dev/null
-  # If the agent recorded in file isn't alive, start a new one
-  if ! ssh-add -l >/dev/null 2>&1; then
-    start_agent
-  fi
-else
-  start_agent
+# Add SSH key to agent once per session (prompts only at startup if needed)
+if [ -f ~/.ssh/id_rsa ]; then
+  ssh-add -l >/dev/null 2>&1 || ssh-add ~/.ssh/id_rsa 2>/dev/null
+elif [ -f ~/.ssh/id_ed25519 ]; then
+  ssh-add -l >/dev/null 2>&1 || ssh-add ~/.ssh/id_ed25519 2>/dev/null
 fi
 
 function yy() {
@@ -61,10 +51,33 @@ alias ls="exa"
 
 alias zed="/usr/bin/zeditor"
 
+# vite-plus
+. "$HOME/.vite-plus/env"
+
 # bun
 export PATH="/home/bolt/.bun/bin:$PATH"
+
+# dotfiles scripts
+export PATH="/home/bolt/git/dotfiles/scripts/linux:$PATH"
 
 eval "$(starship init zsh)"
 
 eval "$(zoxide init zsh)"
+
+gacp() {
+	local model="${1:-${OPENCODE_GACP_MODEL:-opencode-go/deepseek-v4-flash}}"
+	local diff msg prompt
+
+	git add -A || return 1
+	diff=$(git diff --cached) || return 1
+	[ -z "$diff" ] && { echo "No changes to commit."; return 0; }
+
+	prompt="Output ONLY a single-line conventional commit message for this git diff (e.g. 'fix(auth): handle expired token'). Lowercase, no trailing period, no quotes, no markdown, no explanation. Just the message.\n\n${diff}"
+	msg=$(opencode run -m "$model" --dangerously-skip-permissions "${prompt}" 2>/dev/null | tail -1)
+	msg=$(echo "$msg" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//;/^$/d')
+
+	[ -z "$msg" ] && { echo "Failed to generate commit message."; return 1; }
+	echo "→ $msg"
+	git commit -m "$msg" && git push
+}
 

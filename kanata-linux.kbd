@@ -35,8 +35,8 @@
 
 (deflayer nav
     _ _
-    _ _ _ _ _ _ _ _ _ _ _
-    _ _ _ _ _ _ left down up right
+    _ _ C-pgup _ _ _ _ _ _ _ _
+    _ _ C-pgdn _ _ _ left down up right
     _ _ _ _ _ _ _ _
     pp _
 )

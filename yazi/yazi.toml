@@ -13,7 +13,12 @@ imv = [
 	{ run = 'imv-dir "$1"', orphan = true, desc = "imv-dir", for = "linux" },
 ]
 
+mpv = [
+	{ run = 'mpv "$@"', orphan = true, desc = "mpv", for = "unix" },
+]
+
 [open]
 prepend_rules = [
 	{ mime = "image/*", use = "imv" },
+	{ mime = "video/*", use = "mpv" },
 ]

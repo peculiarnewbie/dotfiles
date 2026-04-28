@@ -53,11 +53,15 @@ case "$ACTION" in
     exit 0
     ;;
   reset-size)
-    niri msg action set-window-width --id "$window_id" "560"
-    niri msg action set-window-height --id "$window_id" "315"
+    niri msg action set-window-width --id "$window_id" "616"
+    niri msg action set-window-height --id "$window_id" "347"
     exit 0
     ;;
   cycle)
+    mode="cycle"
+    ;;
+  restore)
+    mode="restore"
     ;;
   *)
     exit 2
@@ -76,21 +80,45 @@ case "$PIPSTATE" in
   *) PIPSTATE=0 ;;
 esac
 
-target_x="$LEFT_MARGIN"
-target_y="$BOTTOM_MARGIN"
+state_0_x="$LEFT_MARGIN"
+state_0_y="$((OUTPUT_HEIGHT - BOTTOM_MARGIN - window_height))"
+state_1_x="$((OUTPUT_WIDTH - RIGHT_MARGIN - window_width))"
+state_1_y="$((OUTPUT_HEIGHT - BOTTOM_MARGIN - window_height))"
+state_2_x="$((OUTPUT_WIDTH / 2 - window_width / 2 + CENTER_X_OFFSET))"
+state_2_y="$TOP_MARGIN"
 
-case "$PIPSTATE" in
+current_state="-1"
+if [ "$current_x" -eq "$state_0_x" ] && [ "$current_y" -eq "$state_0_y" ]; then
+  current_state=0
+elif [ "$current_x" -eq "$state_1_x" ] && [ "$current_y" -eq "$state_1_y" ]; then
+  current_state=1
+elif [ "$current_x" -eq "$state_2_x" ] && [ "$current_y" -eq "$state_2_y" ]; then
+  current_state=2
+fi
+
+if [ "$mode" = "restore" ]; then
+  target_state="$PIPSTATE"
+elif [ "$current_state" -ge 0 ]; then
+  target_state="$(((current_state + 1) % 3))"
+else
+  target_state="$PIPSTATE"
+fi
+
+target_x="$state_0_x"
+target_y="$state_0_y"
+
+case "$target_state" in
   0)
-    target_x="$LEFT_MARGIN"
-    target_y="$((OUTPUT_HEIGHT - BOTTOM_MARGIN - window_height))"
+    target_x="$state_0_x"
+    target_y="$state_0_y"
     ;;
   1)
-    target_x="$((OUTPUT_WIDTH - RIGHT_MARGIN - window_width))"
-    target_y="$((OUTPUT_HEIGHT - BOTTOM_MARGIN - window_height))"
+    target_x="$state_1_x"
+    target_y="$state_1_y"
     ;;
   2)
-    target_x="$((OUTPUT_WIDTH / 2 - window_width / 2 + CENTER_X_OFFSET))"
-    target_y="$TOP_MARGIN"
+    target_x="$state_2_x"
+    target_y="$state_2_y"
     ;;
 esac
 
@@ -111,5 +139,6 @@ niri msg action move-floating-window \
   --x "$(format_delta "$delta_x")" \
   --y "$(format_delta "$delta_y")"
 
-next_state="$(((PIPSTATE + 1) % 3))"
-printf 'export PIPSTATE=%s\n' "$next_state" >"$STATE_FILE"
+if [ "$mode" = "cycle" ]; then
+  printf 'export PIPSTATE=%s\n' "$target_state" >"$STATE_FILE"
+fi

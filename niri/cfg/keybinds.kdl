@@ -40,10 +40,10 @@ binds {
     Mod+H                               { focus-column-left; }
     Mod+Right                           { focus-column-right; }
     Mod+L                               { focus-column-right; }
-    Mod+Up                              { focus-window-up; }
     Mod+K                               { focus-window-up; }
-    Mod+Down                            { focus-window-down; }
     Mod+J                               { focus-window-down; }
+    Mod+Up                              allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume increase"; }
+    Mod+Down                            allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume decrease"; }
 
     Mod+CTRL+Left                       { move-column-left; }
     Mod+CTRL+L                          hotkey-overlay-title="Lock Screen: noctalia lock" { spawn-sh "qs -c noctalia-shell ipc call lockScreen lock"; }
@@ -102,7 +102,7 @@ binds {
     Mod+CTRL+8                          { move-column-to-workspace 8; }
     Mod+CTRL+9                          { move-column-to-workspace 9; }
 
-    Mod+TAB                             { focus-workspace-previous; }
+    Mod+TAB                             { toggle-overview; }
 
     // ─── Layout Controls ───
     Mod+CTRL+F                          { expand-column-to-available-width; }
@@ -121,6 +121,7 @@ binds {
 
     // ─── Screenshots ───
     Print                               { spawn "~/.config/niri/scripts/screenshot-swappy.sh"; }
+    CTRL+Print                          { spawn "~/.config/niri/scripts/screenshot-freeze.sh"; }
     CTRL+Shift+1                        { screenshot; }
     CTRL+Shift+2                        { screenshot-screen; }
     CTRL+Shift+3                        { screenshot-window; }
@@ -153,7 +154,7 @@ binds {
     Super+Shift+X                       { spawn "xdg-open" "https://x.com/compose/post"; }
     CTRL+ALT+Super+Shift+W              { spawn "xdg-open" "https://web.whatsapp.com/"; }
 
-    Super+CTRL+Space                    { spawn "playerctl" "play-pause"; }
+    Super+CTRL+Space                    { spawn "~/.config/niri/scripts/pear-play-pause.sh"; }
 
     // Quick focus / spawn (former special workspaces)
     CTRL+ALT+Super+D                    { spawn-sh "~/.config/niri/scripts/focus-or-spawn.sh '^vesktop$' -- vesktop"; }
@@ -180,6 +181,9 @@ binds {
     Super+ALT+H                         { move-column-left; }
     Super+ALT+K                         { move-window-up; }
     Super+ALT+J                         { move-window-down; }
+
+    Super+Shift+ALT+H                   { consume-window-into-column; }
+    Super+Shift+ALT+L                   { expel-window-from-column; }
 
     // PiP position cycling (ported from Hyprland script)
     CTRL+ALT+Super+Period               { spawn "/home/bolt/.config/niri/scripts/pip.sh"; }

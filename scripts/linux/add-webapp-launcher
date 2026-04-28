@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# Add a webapp to the Noctalia launcher by creating a .desktop file
+# Usage: add-webapp-launcher <name> <url> [icon]
+
+set -euo pipefail
+
+if [ $# -lt 2 ]; then
+    echo "Usage: $0 <name> <url> [icon]"
+    echo "Example: $0 'GitHub' https://github.com github"
+    echo ""
+    echo "Icons can be: utilities-terminal, youtube, whatsapp, mail-client, twitter,"
+    echo "or any icon from /usr/share/icons/"
+    exit 1
+fi
+
+NAME="$1"
+URL="$2"
+ICON="${3:-utilities-terminal}"
+
+# Sanitize filename
+FILENAME=$(echo "$NAME" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | tr -cd '[:alnum:]-')
+FILENAME="${FILENAME}-webapp.desktop"
+
+WMCLASS=$(echo "$NAME" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
+
+DESKTOP_FILE="$HOME/.local/share/applications/$FILENAME"
+
+cat > "$DESKTOP_FILE" << EOF
+[Desktop Entry]
+Name=$NAME
+Comment=$NAME Web App
+Exec=launch-webapp $URL $WMCLASS
+Terminal=false
+Type=Application
+Icon=$ICON
+Categories=Network;
+StartupWMClass=$WMCLASS
+EOF
+
+echo "Created: $DESKTOP_FILE"
+echo "You can now search for '$NAME' in your launcher!"

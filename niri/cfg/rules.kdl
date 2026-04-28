@@ -12,8 +12,8 @@
         match title=r#"^[Pp]icture(?:[- ]in[- ])[Pp]icture$"#
         open-floating true
         open-focused false
-        default-column-width { fixed 560; }
-        default-window-height { fixed 315; }
+        default-column-width { fixed 616; }
+        default-window-height { fixed 347; }
         default-floating-position x=32 y=32 relative-to="bottom-left"
     }
 
@@ -56,18 +56,27 @@
 
     window-rule {
         match app-id=r#"^discord$"#
+        open-on-workspace "3"
+    }
+
+    window-rule {
         match app-id=r#"^vesktop$"#
-        open-on-workspace "5"
+        open-on-workspace "3"
+    }
+
+    window-rule {
+        match app-id=r#"^pear-desktop$"#
+        open-on-workspace "3"
     }
 
     window-rule {
         match app-id=r#"^obsidian$"#
-        open-on-workspace "6"
+        open-on-workspace "4"
     }
 
     window-rule {
         match app-id=r#"^com\.github\.th_ch\.youtube_music$"#
-        open-on-workspace "6"
+        open-on-workspace "4"
     }
 
     window-rule {

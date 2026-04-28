@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Open a web page as a Chromium browser app using helium-browser
+# Usage: launch-webapp <url> [name]
+
+set -euo pipefail
+
+if [ $# -lt 1 ]; then
+    echo "Usage: $0 <url> [name]"
+    echo "Example: $0 https://youtube.com YouTube"
+    exit 1
+fi
+
+URL="$1"
+NAME="${2:-$(echo "$URL" | sed 's|https\?://||; s|/.*||')}"
+
+# Launch as an app window (no browser chrome)
+exec helium-browser --app="$URL" --name="$NAME" "$@"
