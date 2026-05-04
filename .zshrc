@@ -72,7 +72,7 @@ gacp() {
 	diff=$(git diff --cached) || return 1
 	[ -z "$diff" ] && { echo "No changes to commit."; return 0; }
 
-	prompt="Output ONLY a single-line conventional commit message for this git diff (e.g. 'fix(auth): handle expired token'). Lowercase, no trailing period, no quotes, no markdown, no explanation. Just the message.\n\n${diff}"
+	prompt="Draft a concise conventional commit message (1 sentence) for the git diff below. Focus on WHY the change was made, not a mechanical summary of WHAT changed. Use conventional commit format (type(scope): description). Lowercase, no trailing period, no quotes, no markdown, no explanation. Just the commit message.\n\n${diff}"
 	msg=$(opencode run -m "$model" --dangerously-skip-permissions "${prompt}" 2>/dev/null | tail -1)
 	msg=$(echo "$msg" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//;/^$/d')
 

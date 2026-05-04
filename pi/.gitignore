@@ -1,0 +1,2 @@
+# Sensitive credentials - don't commit API keys
+agent/auth.json

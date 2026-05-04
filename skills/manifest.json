@@ -1,0 +1,8 @@
+{
+  "skills": [
+    "vercel-labs/agent-skills/skills/find-skills",
+    "vercel-labs/agent-skills/skills/browser-tools",
+    "anthropics/skills/skills/pdf",
+    "anthropics/skills/skills/skill-creator"
+  ]
+}

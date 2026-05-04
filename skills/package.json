@@ -1,0 +1,11 @@
+{
+  "name": "my-pi-skills",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Skills manifest and sync tools",
+  "type": "module",
+  "bin": {
+    "skills-install": "./install.ts",
+    "skills-snapshot": "./snapshot.ts"
+  }
+}
