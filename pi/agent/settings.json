@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.72.1",
   "defaultProvider": "crofai",
-  "defaultModel": "deepseek-v4-pro",
-  "defaultThinkingLevel": "high",
+  "defaultModel": "kimi-k2.5-lightning",
+  "defaultThinkingLevel": "low",
   "hideThinkingBlock": false
 }
