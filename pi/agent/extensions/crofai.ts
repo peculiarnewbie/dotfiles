@@ -1,25 +1,39 @@
 import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
 
+type CrofModel = {
+  id: string;
+  name?: string;
+  context_length?: number;
+  max_completion_tokens?: number;
+  custom_reasoning?: boolean;
+  reasoning_effort?: boolean;
+  pricing?: {
+    prompt?: string;
+    completion?: string;
+    cache_prompt?: string;
+  };
+};
+
 export default async function (pi: ExtensionAPI) {
   const baseUrl = "https://crof.ai/v1";
 
   // Fetch available models from CrofAI
-  const response = await fetch(`${baseUrl}/models`);
-  const payload = (await response.json()) as {
-    data: Array<{
-      id: string;
-      name?: string;
-      context_length?: number;
-      max_completion_tokens?: number;
-      custom_reasoning?: boolean;
-      reasoning_effort?: boolean;
-      pricing?: {
-        prompt?: string;
-        completion?: string;
-        cache_prompt?: string;
-      };
-    }>;
-  };
+  let modelsData: CrofModel[] = [];
+
+  try {
+    const response = await fetch(`${baseUrl}/models`);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const payload = (await response.json()) as { data: CrofModel[] };
+    modelsData = payload.data;
+  } catch (err) {
+    console.error(`[crofai] Failed to fetch models: ${err}`);
+    return;
+  }
+
+  if (modelsData.length === 0) {
+    console.error("[crofai] No models returned from API");
+    return;
+  }
 
   // Determine thinking format from model family
   const getThinkingFormat = (id: string): string | undefined => {
@@ -29,16 +43,16 @@ export default async function (pi: ExtensionAPI) {
     return undefined; // Kimi, Gemma, MiniMax, etc. use default
   };
 
-  const models = payload.data.map((model) => {
+  const models = modelsData.map((model) => {
     const thinkingFormat = getThinkingFormat(model.id);
     const hasCustomReasoning = model.custom_reasoning === true;
     const supportsReasoningEffort = model.reasoning_effort === true;
 
-    // Convert per-token pricing strings to per-million-tokens numbers
+    // Prices are already per-million-tokens from the /v1/models response
     const cost = {
-      input: model.pricing?.prompt ? parseFloat(model.pricing.prompt) * 1_000_000 : 0,
-      output: model.pricing?.completion ? parseFloat(model.pricing.completion) * 1_000_000 : 0,
-      cacheRead: model.pricing?.cache_prompt ? parseFloat(model.pricing.cache_prompt) * 1_000_000 : 0,
+      input: model.pricing?.prompt ? parseFloat(model.pricing.prompt) : 0,
+      output: model.pricing?.completion ? parseFloat(model.pricing.completion) : 0,
+      cacheRead: model.pricing?.cache_prompt ? parseFloat(model.pricing.cache_prompt) : 0,
       cacheWrite: 0,
     };
 

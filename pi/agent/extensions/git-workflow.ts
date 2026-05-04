@@ -643,6 +643,9 @@ export default function (pi: ExtensionAPI) {
           "--no-themes",
           "--no-context-files",
           "--no-session",
+          // Load crofai extension explicitly so the provider is registered
+          "--extension",
+          require("node:path").join(__dirname, "crofai.ts"),
           ...modelFlags,
         ];
         // Use spawn so we can pipe the prompt to stdin and close it.
