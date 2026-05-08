@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.74.0",
   "defaultProvider": "crofai",
-  "defaultModel": "deepseek-v4-flash",
-  "defaultThinkingLevel": "low",
-  "hideThinkingBlock": false
+  "defaultModel": "deepseek-v4-pro",
+  "defaultThinkingLevel": "high",
+  "hideThinkingBlock": true
 }
