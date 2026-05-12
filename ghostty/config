@@ -23,6 +23,12 @@ keybind = alt+j=goto_split:down
 keybind = alt+shift+k=new_split:up
 keybind = alt+k=goto_split:up
 
+# Resize
+keybind = ctrl+alt+h=resize_split:left,50
+keybind = ctrl+alt+j=resize_split:down,50
+keybind = ctrl+alt+k=resize_split:up,50
+keybind = ctrl+alt+l=resize_split:right,50
+
 # Tabs
 keybind = alt+shift+d=new_tab
 keybind = alt+d=next_tab

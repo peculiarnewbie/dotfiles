@@ -35,7 +35,7 @@ interface CrofCache {
   models: CrofModel[];
 }
 
-const BASE_URL = "https://crof.ai/v1";
+const BASE_URL = "https://crof.ai/v2";
 const CACHE_FILE = join(getAgentDir(), "crofai-models.json");
 const CACHE_TTL_MS = 60 * 60 * 1000; // 1 hour
 
@@ -70,13 +70,36 @@ function convertModels(modelsData: CrofModel[]) {
       compat.supportsReasoningEffort = false;
     } else if (supportsReasoningEffort) {
       compat.supportsReasoningEffort = true;
+      // Fix follow-up crashes when assistant messages mix thinking and text
+      // See: https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/CHANGELOG.md
+      compat.requiresThinkingAsText = true;
     }
+
+    const reasoning = hasCustomReasoning || supportsReasoningEffort;
+
+    // Only Kimi and Qwen models support images
+    const supportsImages = model.id.startsWith("kimi") || model.id.startsWith("qwen");
 
     return {
       id: model.id,
       name: model.name ?? model.id,
-      reasoning: hasCustomReasoning || supportsReasoningEffort,
-      input: ["text"] as ("text" | "image")[],
+      reasoning,
+      // CrofAI advertises reasoning_effort for Kimi Lightning, but the API
+      // currently returns a 500 for reasoning_effort: "none". Hide thinking-off
+      // levels in pi and clamp them in before_provider_request as a fallback.
+      ...(supportsReasoningEffort
+        ? {
+            thinkingLevelMap: {
+              off: null,
+              minimal: null,
+              low: "low",
+              medium: "medium",
+              high: "high",
+              xhigh: "high",
+            },
+          }
+        : {}),
+      input: supportsImages ? (["text", "image"] as ("text" | "image")[]) : (["text"] as ("text" | "image")[]),
       contextWindow: model.context_length ?? 128000,
       maxTokens: model.max_completion_tokens ?? 16384,
       cost,
@@ -95,7 +118,9 @@ function registerProvider(pi: ExtensionAPI, modelsData: CrofModel[]) {
     api: "openai-completions",
     compat: {
       supportsDeveloperRole: false,
-      supportsReasoningEffort: false,
+      supportsReasoningEffort: true,
+      supportsUsageInStreaming: false,
+      requiresThinkingAsText: true,
     },
     models,
   });
@@ -158,6 +183,50 @@ export default function (pi: ExtensionAPI) {
   if (currentModels.length > 0) {
     registerProvider(pi, currentModels);
   }
+
+  // ── Fix: flatten assistant message content to plain strings ───
+  pi.on("before_provider_request", (event, _ctx) => {
+    if (event.payload.model?.includes("kimi")) {
+      // CrofAI's web UI sends plain string message content. Pi/OpenAI can
+      // produce text content arrays (and, with requiresThinkingAsText, replay
+      // assistant thinking as the first text part). Normalize text-only arrays
+      // to strings and keep only the assistant's final visible text.
+      for (const msg of event.payload.messages || []) {
+        if (Array.isArray(msg.content)) {
+          const textParts = msg.content
+            .filter((c: any) => c.type === "text" && typeof c.text === "string")
+            .map((c: any) => c.text);
+
+          if (textParts.length === msg.content.length) {
+            msg.content = msg.role === "assistant"
+              ? (textParts[textParts.length - 1] ?? "")
+              : textParts.join("");
+          }
+        }
+      }
+      // CrofAI Kimi Lightning currently returns an empty SSE response when the
+      // request includes a tools field and prior assistant history. The web UI
+      // does not send tools, and omitting tools makes follow-up turns work.
+      if (
+        event.payload.model === "kimi-k2.5-lightning" &&
+        (event.payload.messages || []).some((msg: any) => msg.role === "assistant")
+      ) {
+        delete event.payload.tools;
+        delete event.payload.tool_choice;
+      }
+
+      // CrofAI Kimi currently 500s when reasoning_effort is "none".
+      // pi can emit "none" when thinking is disabled, so clamp unsupported
+      // off/minimal values to the lowest value CrofAI accepts.
+      if (
+        !event.payload.reasoning_effort ||
+        event.payload.reasoning_effort === "none" ||
+        event.payload.reasoning_effort === "minimal"
+      ) {
+        event.payload.reasoning_effort = "low";
+      }
+    }
+  });
 
   // ── Background refresh on session start ────────────────────────
   pi.on("session_start", async (_event, ctx) => {

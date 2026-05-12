@@ -122,6 +122,7 @@ binds {
     // ─── Screenshots ───
     Print                               { spawn "~/.config/niri/scripts/screenshot-swappy.sh"; }
     CTRL+Print                          { spawn "~/.config/niri/scripts/screenshot-freeze.sh"; }
+    ALT+Print                           { spawn-sh "hyprpicker -a | wl-copy"; }
     CTRL+Shift+1                        { screenshot; }
     CTRL+Shift+2                        { screenshot-screen; }
     CTRL+Shift+3                        { screenshot-window; }

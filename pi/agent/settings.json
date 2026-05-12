@@ -3,5 +3,5 @@
   "defaultProvider": "crofai",
   "defaultModel": "deepseek-v4-pro",
   "defaultThinkingLevel": "high",
-  "hideThinkingBlock": true
+  "hideThinkingBlock": false
 }
