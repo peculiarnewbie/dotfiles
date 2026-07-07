@@ -118,6 +118,7 @@ binds {
     Mod+F                               { fullscreen-window; }
     Mod+Shift+F                         { maximize-column; }
     Mod+Shift+W                         { toggle-column-tabbed-display; }
+    Mod+ALT+F                           { maximize-window-to-edges; }
 
     // ─── Screenshots ───
     Print                               { spawn "~/.config/niri/scripts/screenshot-swappy.sh"; }

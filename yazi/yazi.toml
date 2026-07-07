@@ -20,5 +20,6 @@ mpv = [
 [open]
 prepend_rules = [
 	{ mime = "image/*", use = "imv" },
+	{ mime = "audio/*", use = "mpv" },
 	{ mime = "video/*", use = "mpv" },
 ]

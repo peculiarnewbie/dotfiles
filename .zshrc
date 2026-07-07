@@ -1,3 +1,6 @@
+# Source POSIX profile for non-login shells (login shells already get it via .zprofile)
+[[ -f ~/.profile ]] && . ~/.profile
+
 # Plugins
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -57,6 +60,9 @@ alias zed="/usr/bin/zeditor"
 # bun
 export PATH="/home/bolt/.bun/bin:$PATH"
 
+# nub
+export PATH="$HOME/.nub/bin:$PATH"
+
 # dotfiles scripts
 export PATH="/home/bolt/git/dotfiles/scripts/linux:$PATH"
 
@@ -80,4 +86,3 @@ gacp() {
 	echo "→ $msg"
 	git commit -m "$msg" && git push
 }
-

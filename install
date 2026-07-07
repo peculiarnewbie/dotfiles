@@ -1,0 +1,136 @@
+#!/usr/bin/env bash
+# Dotfiles installer
+# Symlinks configs from this repo into their expected locations.
+# Run from the repo root, or from anywhere (it resolves its own location).
+
+set -euo pipefail
+
+REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+HOME_DIR="$HOME"
+CONFIG_DIR="${HOME_DIR}/.config"
+BACKUP_DIR="${HOME_DIR}/.dotfiles-backup/$(date +%Y%m%d-%H%M%S)"
+
+# Files at repo root that should live directly in $HOME.
+home_files=(
+    .bashrc
+    .gitconfig
+    .ideavimrc
+    .profile
+    .wezterm.lua
+    .zprofile
+    .zshrc
+    kanata.kbd
+    kanata-linux.kbd
+    sunshine.conf
+    whkdrc
+    xremap.yml
+)
+
+# Files at repo root that should live in ~/.config/.
+config_files=(
+    starship.toml
+)
+
+# Directories in the repo that should be symlinked as ~/.config/<name>.
+config_dirs=(
+    ghostty
+    hyprland
+    niri
+    nvim
+    oh-my-posh
+    pi
+    powershell
+    yazi
+    Zed
+)
+
+# systemd units to symlink into ~/.config/systemd/user/.
+# We do this per-file so we don't blow away other user units.
+systemd_units=(
+    kanata.service
+    user/ssh-agent.service
+)
+
+log() {
+    printf '  %b%s%b\n' "$2" "$1" '\033[0m'
+}
+
+backup() {
+    local target="$1"
+    mkdir -p "$BACKUP_DIR"
+    mv "$target" "$BACKUP_DIR/$(basename "$target")"
+    log "Backed up $target -> $BACKUP_DIR" '\033[33m'
+}
+
+link_file() {
+    local src="$1"
+    local dst="$2"
+
+    if [[ -L "$dst" ]]; then
+        if [[ "$(readlink -f "$dst")" == "$(readlink -f "$src")" ]]; then
+            log "Already linked: $dst" '\033[90m'
+            return
+        fi
+        rm "$dst"
+    elif [[ -e "$dst" ]]; then
+        backup "$dst"
+    fi
+
+    mkdir -p "$(dirname "$dst")"
+    ln -s "$src" "$dst"
+    log "Linked: $dst -> $src" '\033[32m'
+}
+
+link_dir() {
+    local src="$1"
+    local dst="$2"
+
+    if [[ -L "$dst" ]]; then
+        if [[ "$(readlink -f "$dst")" == "$(readlink -f "$src")" ]]; then
+            log "Already linked: $dst" '\033[90m'
+            return
+        fi
+        rm "$dst"
+    elif [[ -e "$dst" ]]; then
+        backup "$dst"
+    fi
+
+    mkdir -p "$(dirname "$dst")"
+    ln -s "$src" "$dst"
+    log "Linked: $dst -> $src" '\033[32m'
+}
+
+main() {
+    echo "Installing dotfiles from $REPO"
+    echo "Backups will go to $BACKUP_DIR"
+    echo
+
+    for file in "${home_files[@]}"; do
+        link_file "$REPO/$file" "$HOME_DIR/$file"
+    done
+
+    for file in "${config_files[@]}"; do
+        link_file "$REPO/$file" "$CONFIG_DIR/$file"
+    done
+
+    for dir in "${config_dirs[@]}"; do
+        link_dir "$REPO/$dir" "$CONFIG_DIR/$dir"
+    done
+
+    mkdir -p "$CONFIG_DIR/systemd/user"
+    for unit in "${systemd_units[@]}"; do
+        local src_unit="$REPO/systemd/$unit"
+        if [[ -f "$src_unit" ]]; then
+            link_file "$src_unit" "$CONFIG_DIR/systemd/$unit"
+        else
+            log "Skipped missing unit: $src_unit" '\033[31m'
+        fi
+    done
+
+    echo
+    echo "Done."
+    echo "You may need to run: systemctl --user daemon-reload"
+    echo "And enable services: systemctl --user enable --now ssh-agent.service"
+}
+
+main "$@"
