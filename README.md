@@ -28,6 +28,8 @@ systemctl --user enable --now ssh-agent.service
 | `ghostty/` | Ghostty terminal | Linux |
 | `.wezterm.lua` | WezTerm terminal | Windows |
 | `niri/`, `hyprland/` | Wayland compositors | Linux |
+| `noctalia/` | Noctalia bar / launcher | Linux |
+| `wallpapers/` | Desktop wallpapers | Linux |
 | `kanata.kbd`, `kanata-linux.kbd` | Keyboard remapping | Windows/Linux |
 | `whkdrc` | Komorebi hotkey daemon | Windows |
 | `nvim/` | Neovim (LazyVim) | Linux/Windows |

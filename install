@@ -31,6 +31,20 @@ config_files=(
     starship.toml
 )
 
+# Files that live under ~/.config/ but not at the root.
+# Format: repo/path:relative/path/under/.config
+config_nested_files=(
+    noctalia/settings.json:noctalia/settings.json
+    noctalia/plugins.json:noctalia/plugins.json
+    noctalia/colors.json:noctalia/colors.json
+)
+
+# Directories that should be symlinked under $HOME but not at the root.
+# Format: repo/path:relative/path/under/$HOME
+home_dirs=(
+    wallpapers:Pictures/Wallpapers
+)
+
 # Directories in the repo that should be symlinked as ~/.config/<name>.
 config_dirs=(
     ghostty
@@ -111,6 +125,18 @@ main() {
 
     for file in "${config_files[@]}"; do
         link_file "$REPO/$file" "$CONFIG_DIR/$file"
+    done
+
+    for entry in "${config_nested_files[@]}"; do
+        local src_rel="${entry%%:*}"
+        local dst_rel="${entry#*:}"
+        link_file "$REPO/$src_rel" "$CONFIG_DIR/$dst_rel"
+    done
+
+    for entry in "${home_dirs[@]}"; do
+        local src_rel="${entry%%:*}"
+        local dst_rel="${entry#*:}"
+        link_dir "$REPO/$src_rel" "$HOME_DIR/$dst_rel"
     done
 
     for dir in "${config_dirs[@]}"; do

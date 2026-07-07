@@ -65,6 +65,9 @@ sudo pacman -S neovim nodejs npm ripgrep fd
 These are referenced by configs but you may not want them on every machine:
 
 ```bash
+# Bar / launcher (used by niri autostart)
+yay -S noctalia
+
 # Authentication agent used by niri autostart
 sudo pacman -S polkit-kde-agent
 

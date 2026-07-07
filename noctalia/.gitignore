@@ -1,0 +1,7 @@
+# Auto-downloaded plugin code and runtime state
+plugins/
+*.cache
+*.log
+nohup.out
+.env
+usage-cache.json
