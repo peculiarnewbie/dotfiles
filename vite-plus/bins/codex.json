@@ -1,7 +1,0 @@
-{
-  "name": "codex",
-  "package": "@openai/codex",
-  "version": "0.142.5",
-  "nodeVersion": "24.18.0",
-  "source": "vp"
-}

@@ -58,10 +58,22 @@ sudo pacman -S neovim nodejs npm ripgrep fd
 
 # opencode CLI — install via bun/npm or official installer
 # bun install -g @opencodeai/opencode
-
-# Vite+ (vp) — tool/binary manager
-# curl -fsSL https://viteplus.dev/install.sh | bash
 ```
+
+### Tools managed by Vite+ (`vp`)
+
+These are installed via `vp install -g` rather than the system package manager:
+
+```bash
+# Install Vite+ first: https://viteplus.dev
+vp install -g @anthropic-ai/claude-code
+vp install -g @openai/codex
+vp install -g command-code
+vp install -g pnpm
+vp install -g opencode-ai
+```
+
+The exact commands may change with vp versions — check `vp install --help`.
 
 ### Optional / machine-specific
 

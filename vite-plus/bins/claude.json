@@ -1,7 +1,0 @@
-{
-  "name": "claude",
-  "package": "@anthropic-ai/claude-code",
-  "version": "2.1.202",
-  "nodeVersion": "24.18.0",
-  "source": "vp"
-}
