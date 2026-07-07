@@ -139,6 +139,19 @@ main() {
         link_dir "$REPO/$src_rel" "$HOME_DIR/$dst_rel"
     done
 
+    # Vite+ bin/package manifests (not the downloaded runtimes).
+    if [[ -d "$REPO/vite-plus" ]]; then
+        for json in "$REPO/vite-plus/bins"/*.json; do
+            [[ -e "$json" ]] || continue
+            link_file "$json" "$HOME_DIR/.vite-plus/bins/$(basename "$json")"
+        done
+        for json in "$REPO/vite-plus/packages"/*.json "$REPO/vite-plus/packages"/@*/*.json; do
+            [[ -e "$json" ]] || continue
+            local rel="${json#$REPO/vite-plus/packages/}"
+            link_file "$json" "$HOME_DIR/.vite-plus/packages/$rel"
+        done
+    fi
+
     for dir in "${config_dirs[@]}"; do
         link_dir "$REPO/$dir" "$CONFIG_DIR/$dir"
     done

@@ -30,6 +30,7 @@ systemctl --user enable --now ssh-agent.service
 | `niri/`, `hyprland/` | Wayland compositors | Linux |
 | `noctalia/` | Noctalia bar / launcher | Linux |
 | `wallpapers/` | Desktop wallpapers | Linux |
+| `vite-plus/` | Vite+ bin/package manifests | Linux |
 | `kanata.kbd`, `kanata-linux.kbd` | Keyboard remapping | Windows/Linux |
 | `whkdrc` | Komorebi hotkey daemon | Windows |
 | `nvim/` | Neovim (LazyVim) | Linux/Windows |

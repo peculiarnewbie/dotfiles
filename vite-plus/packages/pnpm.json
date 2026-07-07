@@ -1,0 +1,21 @@
+{
+  "name": "pnpm",
+  "version": "11.9.0",
+  "platform": {
+    "node": "24.18.0"
+  },
+  "bins": [
+    "pnpm",
+    "pnpx",
+    "pn",
+    "pnx"
+  ],
+  "jsBins": [
+    "pnpx",
+    "pnx",
+    "pn",
+    "pnpm"
+  ],
+  "manager": "npm",
+  "installedAt": "2026-06-29T13:25:50.778834197Z"
+}
