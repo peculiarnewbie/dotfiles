@@ -10,33 +10,18 @@ window-save-state = always
 gtk-custom-css = /home/bolt/.config/ghostty/custom-bar.css
 
 
-# Splits
-keybind = alt+shift+l=new_split:right
-keybind = alt+l=goto_split:right
+# Pane management is handled by Herdr (direct alt chords).
+# Ghostty keeps only window-level actions behind an alt+g prefix.
 
-keybind = alt+shift+h=new_split:left
-keybind = alt+h=goto_split:left
+# alt+g prefix, then a key:
+keybind = alt+g>t=new_tab
+keybind = alt+g>d=next_tab
+keybind = alt+g>a=previous_tab
+keybind = alt+g>r=reload_config
+keybind = alt+g>q=close_surface
 
-keybind = alt+shift+j=new_split:down
-keybind = alt+j=goto_split:down
-
-keybind = alt+shift+k=new_split:up
-keybind = alt+k=goto_split:up
-
-# Resize
-keybind = ctrl+alt+h=resize_split:left,50
-keybind = ctrl+alt+j=resize_split:down,50
-keybind = ctrl+alt+k=resize_split:up,50
-keybind = ctrl+alt+l=resize_split:right,50
-
-# Tabs
-keybind = alt+shift+d=new_tab
-keybind = alt+d=next_tab
-
-keybind = alt+a=previous_tab
-
-keybind = alt+r=reload_config
-keybind = alt+q=close_surface
+# Pass alt+g through to the shell if pressed twice.
+keybind = alt+g>alt+g=text:\x1bg
 
 theme = Detuned
 

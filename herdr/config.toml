@@ -8,15 +8,34 @@ agent_panel_scope = "all"
 
 show_agent_labels_on_pane_borders = true
 [ui.toast]
-delivery = "system"
+delivery = "off"
 
 [keys]
 prefix = "alt+;"
-focus_agent = "prefix+1..9"
-switch_tab = ""
-switch_workspace = "prefix+alt+1..9"
-previous_workspace = "prefix+alt+j"
-next_workspace = "prefix+alt+k"
-previous_tab = "prefix+a"
-next_tab = "prefix+d"
+
+# Fast pane management: direct alt chords (mirrors old Ghostty splits).
+focus_pane_left = ["prefix+h", "alt+h"]
+focus_pane_down = ["prefix+j", "alt+j"]
+focus_pane_up = ["prefix+k", "alt+k"]
+focus_pane_right = ["prefix+l", "alt+l"]
+
+split_vertical = ["prefix+v", "alt+shift+l"]
+split_horizontal = ["prefix+minus", "alt+shift+j"]
+
+zoom = ["prefix+z", "alt+z"]
+close_pane = ["prefix+x", "alt+x"]
+
 new_tab = "prefix+alt+d"
+next_tab = "prefix+d"
+previous_tab = "prefix+a"
+switch_tab = ""
+
+# Workspaces: direct alt+d/a, plus prefix fallback.
+next_workspace = ["prefix+alt+k", "alt+d"]
+previous_workspace = ["prefix+alt+j", "alt+a"]
+switch_workspace = "prefix+alt+1..9"
+focus_agent = "prefix+1..9"
+detach = "prefix+q"
+goto = "prefix+g"
+toggle_sidebar = "prefix+b"
+copy_mode = "prefix+["
