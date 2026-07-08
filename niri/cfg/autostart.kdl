@@ -5,6 +5,10 @@
     spawn-sh-at-startup "syncthing &"
     spawn-sh-at-startup "/usr/lib/polkit-kde-authentication-agent-1 &" // Polkit
     spawn-sh-at-startup "~/.config/niri/scripts/pip-watch.sh &"
-    spawn-sh-at-startup "qs -c noctalia-shell"
+    // Noctalia is now managed via systemd user service for easy on/off.
+    // systemctl --user start noctalia-shell   # turn on
+    // systemctl --user stop noctalia-shell    # turn off
+    // systemctl --user enable noctalia-shell  # auto-start with graphical session
+    // spawn-sh-at-startup "qs -c noctalia-shell"
     spawn-sh-at-startup "ghostty"
     spawn-sh-at-startup "zen-browser"

@@ -37,6 +37,7 @@ config_nested_files=(
     noctalia/settings.json:noctalia/settings.json
     noctalia/plugins.json:noctalia/plugins.json
     noctalia/colors.json:noctalia/colors.json
+    fish/config.fish:fish/config.fish
 )
 
 # Directories that should be symlinked under $HOME but not at the root.
@@ -58,11 +59,18 @@ config_dirs=(
     Zed
 )
 
-# systemd units to symlink into ~/.config/systemd/user/.
+# systemd user units to symlink into ~/.config/systemd/user/.
 # We do this per-file so we don't blow away other user units.
-systemd_units=(
-    kanata.service
+systemd_user_units=(
     user/ssh-agent.service
+    user/noctalia-shell.service
+)
+
+# systemd system units to symlink into /etc/systemd/system/.
+# These require root (e.g. kanata needs /dev/uinput). Run install with sudo
+# or pre-link these manually. We skip them silently if not running as root.
+systemd_system_units=(
+    kanata.service
 )
 
 log() {
@@ -148,19 +156,38 @@ main() {
     done
 
     mkdir -p "$CONFIG_DIR/systemd/user"
-    for unit in "${systemd_units[@]}"; do
+    for unit in "${systemd_user_units[@]}"; do
         local src_unit="$REPO/systemd/$unit"
         if [[ -f "$src_unit" ]]; then
-            link_file "$src_unit" "$CONFIG_DIR/systemd/$unit"
+            link_file "$src_unit" "$CONFIG_DIR/systemd/user/$unit"
         else
             log "Skipped missing unit: $src_unit" '\033[31m'
         fi
     done
 
+    if [[ "$EUID" -eq 0 ]]; then
+        local sys_unit_dir="/etc/systemd/system"
+        for unit in "${systemd_system_units[@]}"; do
+            local src_unit="$REPO/systemd/$unit"
+            if [[ -f "$src_unit" ]]; then
+                link_file "$src_unit" "$sys_unit_dir/$unit"
+            else
+                log "Skipped missing unit: $src_unit" '\033[31m'
+            fi
+        done
+    else
+        echo
+        log "Skipped system units (run as root to install): ${systemd_system_units[*]}" '\033[33m'
+        echo "  sudo $REPO/install   # or link manually into /etc/systemd/system/"
+    fi
+
     echo
     echo "Done."
     echo "You may need to run: systemctl --user daemon-reload"
     echo "And enable services: systemctl --user enable --now ssh-agent.service"
+    if [[ "$EUID" -eq 0 ]]; then
+        echo "System units installed. Run: systemctl daemon-reload && systemctl enable --now kanata"
+    fi
 }
 
 main "$@"

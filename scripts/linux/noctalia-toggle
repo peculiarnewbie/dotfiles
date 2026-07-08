@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Toggle Noctalia (Quickshell bar/launcher) on/off via systemd user service.
+# Also usable as: noctalia-toggle on | off | status
+
+set -euo pipefail
+
+CMD="${1:-toggle}"
+
+case "$CMD" in
+    on|start)
+        systemctl --user start noctalia-shell
+        echo "Noctalia started."
+        ;;
+    off|stop)
+        systemctl --user stop noctalia-shell
+        echo "Noctalia stopped."
+        ;;
+    status)
+        systemctl --user status noctalia-shell --no-pager
+        ;;
+    toggle|*)
+        if systemctl --user is-active --quiet noctalia-shell; then
+            systemctl --user stop noctalia-shell
+            echo "Noctalia stopped."
+        else
+            systemctl --user start noctalia-shell
+            echo "Noctalia started."
+        fi
+        ;;
+esac

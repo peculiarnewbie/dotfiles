@@ -13,7 +13,11 @@
         },
         "idle-toggle": {
             "enabled": true,
-            "sourceUrl": ""
+            "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
+        },
+        "polkit-agent": {
+            "enabled": false,
+            "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
         },
         "pomodoro": {
             "enabled": true,

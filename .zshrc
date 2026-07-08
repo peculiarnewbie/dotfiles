@@ -42,6 +42,15 @@ elif [ -f ~/.ssh/id_ed25519 ]; then
   ssh-add -l >/dev/null 2>&1 || ssh-add ~/.ssh/id_ed25519 2>/dev/null
 fi
 
+# Pull in niri session env if the terminal didn't inherit it.
+# This happens when a terminal is launched outside the systemd user session.
+if [[ -z "$NIRI_SOCKET" ]] && systemctl --user is-active --quiet niri 2>/dev/null; then
+  while IFS= read -r line; do
+    [[ "$line" == *=* ]] || continue
+    export "${line%%=*}=${line#*=}"
+  done < <(systemctl --user show-environment 2>/dev/null)
+fi
+
 function yy() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
@@ -50,18 +59,32 @@ function yy() {
 	rm -f -- "$tmp"
 }
 
+# Quick battery status. Finds the first battery under /sys/class/power_supply/.
+function battery() {
+	local bat
+	bat=$(find /sys/class/power_supply -maxdepth 1 -name 'BAT*' -print -quit 2>/dev/null)
+	if [[ -z "$bat" ]]; then
+		echo "No battery found."
+		return 1
+	fi
+	printf '%s%% — %s\n' "$(cat "$bat/capacity" 2>/dev/null || echo '?')" "$(cat "$bat/status" 2>/dev/null || echo 'unknown')"
+}
+
 alias ls="exa"
 
 alias zed="/usr/bin/zeditor"
 
 # vite-plus
 . "$HOME/.vite-plus/env"
+export PATH="$HOME/.vite-plus/bin:$PATH"
 
 # bun
 export PATH="/home/bolt/.bun/bin:$PATH"
 
 # nub
 export PATH="$HOME/.nub/bin:$PATH"
+
+export PATH="/home/bolt/.local/bin:$PATH"
 
 # dotfiles scripts
 export PATH="/home/bolt/git/dotfiles/scripts/linux:$PATH"

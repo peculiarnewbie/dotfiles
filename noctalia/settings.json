@@ -144,31 +144,6 @@
                     "usePadding": false
                 },
                 {
-                    "defaultSettings": {
-                        "CLAUDE_ACCESS_TOKEN": "",
-                        "OPENAI_API_KEY": "",
-                        "OPENCODE_API_KEY": "",
-                        "OPENCODE_GO_AUTH_COOKIE": "",
-                        "OPENCODE_GO_WORKSPACE_ID": "",
-                        "OPENROUTER_API_KEY": "",
-                        "ZAI_API_KEY": "",
-                        "barDisplayItems": [
-                            "claude-5h",
-                            "codex-5h",
-                            "zai"
-                        ],
-                        "refreshInterval": 300000,
-                        "showPercentInBar": true,
-                        "trackClaude": true,
-                        "trackCodex": true,
-                        "trackOpenRouter": true,
-                        "trackOpencodeGo": true,
-                        "trackOpencodeZen": true,
-                        "trackZai": true
-                    },
-                    "id": "plugin:agent-quota"
-                },
-                {
                     "colorizeIcons": false,
                     "hideMode": "hidden",
                     "id": "ActiveWindow",
@@ -191,21 +166,12 @@
                     "showArtistFirst": true,
                     "showProgressRing": true,
                     "showVisualizer": false,
-                    "showVisualizerInBar": true,
                     "textColor": "none",
                     "useFixedWidth": false,
                     "visualizerType": "linear"
                 }
             ],
             "right": [
-                {
-                    "defaultSettings": {
-                        "lastLockTimeout": 900,
-                        "lastScreenOffTimeout": 600,
-                        "lastSuspendTimeout": 3600
-                    },
-                    "id": "plugin:idle-toggle"
-                },
                 {
                     "defaultSettings": {
                         "autoStartBreaks": false,
@@ -222,10 +188,17 @@
                         "compactMode": false,
                         "defaultPeerAction": "copy-ip",
                         "hideDisconnected": false,
+                        "hideMullvadExitNodes": true,
+                        "loginServer": "",
                         "pingCount": 5,
                         "refreshInterval": 5000,
                         "showIpAddress": true,
                         "showPeerCount": true,
+                        "showSearchBar": false,
+                        "sshUsername": "",
+                        "taildropDownloadDir": "~/Downloads",
+                        "taildropEnabled": true,
+                        "taildropReceiveMode": "operator",
                         "terminalCommand": ""
                     },
                     "id": "plugin:tailscale"
@@ -510,7 +483,7 @@
         "screenOffCommand": "",
         "screenOffTimeout": 600,
         "suspendCommand": "",
-        "suspendTimeout": 7200
+        "suspendTimeout": 0
     },
     "location": {
         "analogClockInCalendar": false,

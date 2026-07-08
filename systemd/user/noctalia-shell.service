@@ -1,0 +1,13 @@
+[Unit]
+Description=Noctalia shell (Quickshell bar/launcher)
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/qs -c noctalia-shell
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=graphical-session.target
