@@ -1,3 +1,7 @@
 scripts/.lastFocused
 niri/scripts/.pipstaterc
 pi/agent/extensions/herdr-agent-state.ts
+herdr/*.log
+herdr/*.sock
+herdr/session.json
+herdr/release-notes.json

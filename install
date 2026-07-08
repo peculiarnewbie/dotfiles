@@ -49,6 +49,7 @@ home_dirs=(
 # Directories in the repo that should be symlinked as ~/.config/<name>.
 config_dirs=(
     ghostty
+    herdr
     hyprland
     niri
     nvim

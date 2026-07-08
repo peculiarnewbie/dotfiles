@@ -1,0 +1,22 @@
+onboarding = false
+
+[terminal]
+default_shell = "zsh"
+
+[ui]
+agent_panel_scope = "all"
+
+show_agent_labels_on_pane_borders = true
+[ui.toast]
+delivery = "system"
+
+[keys]
+prefix = "alt+;"
+focus_agent = "prefix+1..9"
+switch_tab = ""
+switch_workspace = "prefix+alt+1..9"
+previous_workspace = "prefix+alt+j"
+next_workspace = "prefix+alt+k"
+previous_tab = "prefix+a"
+next_tab = "prefix+d"
+new_tab = "prefix+alt+d"
