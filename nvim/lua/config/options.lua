@@ -13,5 +13,5 @@ vim.o.shiftwidth = 4
 vim.o.expandtab = true
 vim.o.softtabstop = 4
 
--- don't sync with system clipboard
-vim.o.clipboard = ""
+-- sync with system clipboard (OSC 52 over SSH/herdr)
+vim.o.clipboard = "unnamedplus"

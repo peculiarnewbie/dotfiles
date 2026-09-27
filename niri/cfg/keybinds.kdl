@@ -66,6 +66,9 @@ binds {
     Mod+Shift+CTRL+UP                   { move-column-to-monitor-up; }
     Mod+Shift+CTRL+Down                 { move-column-to-monitor-down; }
 
+    Mod+Alt+Shift+S                     { move-column-to-monitor-left; }
+    Mod+Alt+Shift+W                     { toggle-column-tabbed-display; }
+
     // ─── Workspace Switching ───
     Mod+WheelScrollDown                 cooldown-ms=150 { focus-workspace-down; }
     Mod+WheelScrollUp                   cooldown-ms=150 { focus-workspace-up; }
@@ -137,6 +140,12 @@ binds {
     CTRL+ALT+Delete                     { quit; } // Also quits Niri
     Mod+Shift+P                         { power-off-monitors; } // Turn off screens (useful for OLED or privacy)
     Mod+O                               repeat=false { toggle-overview; }
+
+    // ─── Handy (Speech to Text) ───
+    // Toggle mode: first press starts recording, second press stops + transcribes + pastes.
+    // NOTE: Handy's own X11 global hotkeys don't work on Wayland/niri, so we use the CLI.
+    Ctrl+Alt+S                           hotkey-overlay-title="Handy: Toggle Transcription" { spawn "handy" "--toggle-transcription"; }
+    Ctrl+Alt+Shift+S                     hotkey-overlay-title="Handy: Toggle Post-Process" { spawn "handy" "--toggle-post-process"; }
 
     // ─── Hyprland-style aliases (mapped to niri actions/launchers) ───
     Super+Space                         { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }

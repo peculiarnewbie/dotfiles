@@ -11,4 +11,3 @@
     // systemctl --user enable noctalia-shell  # auto-start with graphical session
     // spawn-sh-at-startup "qs -c noctalia-shell"
     spawn-sh-at-startup "ghostty"
-    spawn-sh-at-startup "zen-browser"

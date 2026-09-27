@@ -109,3 +109,7 @@ gacp() {
 	echo "→ $msg"
 	git commit -m "$msg" && git push
 }
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"

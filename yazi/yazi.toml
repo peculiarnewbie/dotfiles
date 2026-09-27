@@ -5,16 +5,15 @@ show_symlink = true
 
 [opener]
 edit = [
-	{ run = 'nvim "$@"', block = true, for = "unix" },
-	{ run = "nvim %*",  block = true, for = "windows" },
+	{ run = 'nvim %s', block = true, for = "unix" },
 ]
 
 imv = [
-	{ run = 'imv-dir "$1"', orphan = true, desc = "imv-dir", for = "linux" },
+	{ run = 'imv-dir %s1', orphan = true, desc = "imv-dir", for = "linux" },
 ]
 
 mpv = [
-	{ run = 'mpv "$@"', orphan = true, desc = "mpv", for = "unix" },
+	{ run = 'mpv %s', orphan = true, desc = "mpv", for = "unix" },
 ]
 
 [open]

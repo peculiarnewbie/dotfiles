@@ -212,7 +212,8 @@
                     "hidePassive": false,
                     "id": "Tray",
                     "pinned": [
-                        "Vesktop"
+                        "Vesktop",
+                        "steam"
                     ]
                 },
                 {
@@ -368,7 +369,7 @@
         "deadOpacity": 0.6,
         "displayMode": "auto_hide",
         "dockType": "floating",
-        "enabled": true,
+        "enabled": false,
         "floatingRatio": 1,
         "groupApps": false,
         "groupClickAction": "cycle",
@@ -476,14 +477,14 @@
         "enabled": true,
         "fadeDuration": 5,
         "lockCommand": "",
-        "lockTimeout": 3600,
+        "lockTimeout": 900,
         "resumeLockCommand": "",
         "resumeScreenOffCommand": "",
         "resumeSuspendCommand": "",
         "screenOffCommand": "",
         "screenOffTimeout": 600,
         "suspendCommand": "",
-        "suspendTimeout": 0
+        "suspendTimeout": 1200
     },
     "location": {
         "analogClockInCalendar": false,
@@ -509,7 +510,7 @@
         "bluetoothRssiPollingEnabled": false,
         "disableDiscoverability": false,
         "networkPanelView": "wifi",
-        "wifiDetailsViewMode": "list"
+        "wifiDetailsViewMode": "grid"
     },
     "nightLight": {
         "autoSchedule": true,
